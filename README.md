@@ -1,9 +1,13 @@
-# Application Memo 
+# Application Memo
+In progress ...
 
-### for saved some commands 'tips' inline and sort them in environment
+### for saved some commands 'tips' inline and sort them by environment
 
 This app is build with node/expressjs, sequelize, postgresql for the backend
 
 For the frontend : 
 
 I use TDD approch and clean architecture
+
+TODO : 
+- CI CD : github action

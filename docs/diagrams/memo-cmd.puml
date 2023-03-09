@@ -1,25 +1,13 @@
 @startuml
 
 class Tips {
-    + String tips
-    + String description
-    store()
-    getAll()
-    getById()
-    update()
-    delete()
-    environment()
+    # String tips
+    # String description
 }
 
 class Environment {
-    + String name
-    + String details
-    store()
-    getAll()
-    getById()
-    update()
-    delete()
-    tips()
+    # String name
+    # String details
 }
 
 Tips "0..*" - "1..1" Environment
