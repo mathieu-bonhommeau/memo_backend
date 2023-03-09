@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password-root
+      POSTGRES_USER: postgres
+      POSTGRES_DB: memo
+      CONTAINER_NAME: memo-pgsql-db
+      PGDATA: /data/postgres
+    ports:
+      - "6432:5432"
+    networks:
+      - memo-backend
+    restart: unless-stopped
+
+networks:
+  memo-backend:
+    driver: bridge

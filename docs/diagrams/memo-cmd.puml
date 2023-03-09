@@ -1,0 +1,27 @@
+@startuml
+
+class Tips {
+    + String tips
+    + String description
+    store()
+    getAll()
+    getById()
+    update()
+    delete()
+    environment()
+}
+
+class Environment {
+    + String name
+    + String details
+    store()
+    getAll()
+    getById()
+    update()
+    delete()
+    tips()
+}
+
+Tips "0..*" - "1..1" Environment
+
+@enduml
