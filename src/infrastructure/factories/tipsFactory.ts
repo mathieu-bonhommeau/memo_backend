@@ -1,4 +1,4 @@
-import TipsFactoryInterface from '../../domain/factories/tipsFactoryInterface'
+import TipsFactoryInterface from '../factories/tipsFactoryInterface'
 import Tips from '../../domain/models/Tips'
 
 export default class TipsFactory implements TipsFactoryInterface {
