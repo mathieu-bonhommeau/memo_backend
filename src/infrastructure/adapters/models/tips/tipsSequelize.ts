@@ -25,7 +25,7 @@ export default class TipsSequelize extends Model<TipsAttributes, TipsInput> {
 TipsSequelize.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
