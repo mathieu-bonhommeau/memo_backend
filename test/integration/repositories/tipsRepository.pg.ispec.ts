@@ -1,19 +1,27 @@
 import TipsRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/tipsRepositoryPostgres'
 import TipsFactory from '../../../src/application/factories/tipsFactory'
-import { Sequelize } from 'sequelize'
+import {CreationAttributes, Sequelize} from 'sequelize'
 import SequelizeUtils from '../../../src/infrastructure/database/sequelizeUtils'
-import {tipsMocks} from "../../mocks/tips";
+import { tipsMocks } from '../../mocks/tips'
+import TipsSequelize from "../../../src/infrastructure/adapters/models/tips/tipsSequelize";
 
 describe('TipsRepositoryPostgres', () => {
-    let connection: Sequelize
+    let pg: Sequelize
 
     beforeEach(async () => {
-        connection = new SequelizeUtils().connect()
-        //await pg`insert from tips ${pg(tipsMocks)}`
+        pg = new SequelizeUtils().connect()
+        tipsMocks.forEach(tips => {
+            return TipsSequelize.create({
+                tips: tips.tips,
+                description: tips.description,
+                createdAt: tips.createdAt,
+                updatedAt: tips.updatedAt
+            })
+        })
     })
 
     test('should return correct tips from postsgres', async () => {
-        const tipsRepository = new TipsRepositoryPostgres(connection)
+        const tipsRepository = new TipsRepositoryPostgres()
         const tips = await tipsRepository.getAll()
         expect(tips).toEqual(tipsMocks)
     })

@@ -1,17 +1,31 @@
 import { Sequelize } from 'sequelize'
-require('dotenv').config()
-export default class SequelizeUtils {
-    public db: string  = process.env.POSTGRES_DB as string
-    public password: string = process.env.POSTGRES_PASSWORD as string
-    public host: string = process.env.POSTGRES_HOST as string
-    public user: string = process.env.POSTGRES_USER as string
-    public port: string = process.env.POSTGRES_PORT as string
+import * as dotenv from "dotenv";
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
+export default class SequelizeUtils {
     public connect(): Sequelize {
-        return new Sequelize(this.db, this.user, this.password, {
-            host: this.host,
-            port: parseInt(this.port),
-            dialect: 'postgres',
-        })
+        return new Sequelize(
+            `${process.env.POSTGRES_DB as string}`,
+            `${process.env.POSTGRES_USER as string}`,
+            `${process.env.POSTGRES_PASSWORD as string}`,
+            {
+                host: `${process.env.POSTGRES_HOST as string}`,
+                port: parseInt(process.env.POSTGRES_PORT as string),
+                dialect: 'postgres',
+            },
+        )
+    }
+
+    public rootConnect(): Sequelize {
+        return new Sequelize(
+            `postgres`,
+            `${process.env.POSTGRES_USER as string}`,
+            `${process.env.POSTGRES_PASSWORD as string}`,
+            {
+                host: `${process.env.POSTGRES_HOST as string}`,
+                port: parseInt(process.env.POSTGRES_PORT as string),
+                dialect: 'postgres',
+            },
+        )
     }
 }

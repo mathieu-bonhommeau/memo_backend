@@ -1,13 +1,13 @@
 // Define all attribute available for the model
-import {DataTypes, literal, Model, Optional, Sequelize} from "sequelize";
-import SequelizeUtils from "../../../database/sequelizeUtils";
+import { DataTypes, literal, Model, Optional, Sequelize } from 'sequelize'
+import SequelizeUtils from '../../../database/sequelizeUtils'
 const db = new SequelizeUtils().connect()
 interface TipsAttributes {
-    id: number;
-    tips: string;
-    description: string;
-    createdAt: Date;
-    updatedAt: Date;
+    id: number
+    tips: string
+    description: string
+    createdAt: Date
+    updatedAt: Date
 }
 // Define the object we can pass to model.create() with id which is optional
 export interface TipsInput extends Optional<TipsAttributes, 'id'> {}
