@@ -1,11 +1,14 @@
-import TipsRequestInput from "../../inputs/tipsRequestInput";
-import Tips from "../../../domain/models/Tips";
-import TipsRepositoryInterface from "../../../domain/ports/repositories/tipsRepositoryInterface";
+import TipsRequestInput from '../../inputs/tipsRequestInput'
+import Tips from '../../../domain/models/Tips'
+import TipsRepositoryInterface from '../../../domain/ports/repositories/tipsRepositoryInterface'
+import Provider from './provider'
 
-export default class TipsProvider {
-    constructor(public requestInput: TipsRequestInput) {}
+export default class TipsProvider extends Provider {
+    constructor(tipsRepository: TipsRepositoryInterface) {
+        super(tipsRepository)
+    }
 
-    async provideAll(tipsRepository: TipsRepositoryInterface ): Promise<Tips[]> {
-        return await tipsRepository.getAll()
+    async provideAll(): Promise<Tips[]> {
+        return await this.tipsRepository.getAll()
     }
 }

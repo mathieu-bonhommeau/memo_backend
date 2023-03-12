@@ -1,14 +1,11 @@
-import Tips from "../../domain/models/Tips";
+import PaginateResponse from './paginateResponse'
+import RequestInput from '../inputs/requestInput'
+import Provider from '../actions/providers/provider'
 
 export default class TipsResponseOutput {
-    constructor(private tips: Tips[]) {}
+    constructor(private input: RequestInput, private provider: Provider) {}
 
-    getData(): {tips: string, description: string}[] {
-        return this.tips.map((el: Tips) => {
-            return {
-                tips: el.tips,
-                description: el.description
-            }
-        })
+    getAll(): PaginateResponse {
+        return new PaginateResponse(this.input, this.provider.provideAll())
     }
 }
