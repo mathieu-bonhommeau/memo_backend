@@ -1,24 +1,19 @@
-import TipsController from '../../../src/infrastructure/controllers/tipsController'
+import { app } from '../../../src'
+const request = require('supertest')
 
-describe('Tips controller unit test', () => {
-    const req = {
-        start: 0,
-        offset: 0,
-        order: 'desc',
-    }
-    const res = {
-        send: jest.fn((): object => res),
-        status: jest.fn((): object => res),
-    }
+describe('Tips controller test', () => {
 
-    afterEach(() => jest.clearAllMocks())
+    //beforeEach(() => )
 
-    test('return a response 200', async () => {
-        await TipsController.getAll(req, res)
-        expect(res.status).toBeCalledWith(200)
-    })
+    test('GET /tips', async () => {
+        try {
+            const response = await request(app, { http2: true })
+                .get('/tips')
+            expect(response.status).toBe(200)
+        } catch (err) {
+            throw err
+        }
 
-    test('return an array of tips in json with pagination', async () => {
-        //await TipsController.getAll(req, res)
+
     })
 })

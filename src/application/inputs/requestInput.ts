@@ -9,7 +9,7 @@ export default abstract class RequestInput {
         return this._start
     }
 
-    get offset(): number {
+    get length(): number {
         return this._offset
     }
 

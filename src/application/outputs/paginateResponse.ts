@@ -5,7 +5,8 @@ type JsonResponse = {
     data: object[]
     metadata: {
         start: number
-        offset: number
+        length: number
+        recordsTotal: number
         order: string
     }
 }
@@ -21,7 +22,8 @@ export default class PaginateResponse {
             data: data,
             metadata: {
                 start: this.input.start,
-                offset: this.input.offset,
+                length: this.input.length,
+                recordsTotal: data.length,
                 order: this.input.order,
             },
         }
