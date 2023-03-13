@@ -1,6 +1,6 @@
 import Tips from '../../../../domain/models/Tips'
 import TipsSequelize from './tipsSequelize'
-import { DataTypes, literal, Sequelize } from 'sequelize'
+import { Sequelize } from 'sequelize'
 
 export default class TipsSequelizeMapper {
     constructor(private db: Sequelize, private tips: Tips) {}

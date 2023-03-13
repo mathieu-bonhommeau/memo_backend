@@ -4,7 +4,7 @@ import TipsRepositoryInterface from '../../../domain/ports/repositories/tipsRepo
 import Provider from './provider'
 
 export default class TipsProvider extends Provider {
-    constructor(tipsRepository: TipsRepositoryInterface) {
+        constructor(tipsRepository: TipsRepositoryInterface) {
         super(tipsRepository)
     }
 

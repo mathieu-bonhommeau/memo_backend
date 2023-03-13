@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
+    "build": "rimraf ./build && tsc",
     "prettier-format": "run-script-os",
     "prettier-format:win32": "prettier --config .prettierrc \"./(src|test)/**/*.ts\" --write",
     "prettier-format:default": "prettier --config .prettierrc '(src|test)/**/*.ts' --write",
     "pretty-lint": "npm run prettier-format && npm run lint",
+    "test-integration": "jest -c jest-integration.config.js",
+    "test-unit": "jest -c jest-unit.config.js",
     "test": "jest -c jest.config.js"
   },
   "author": "Mathieu Bonhommeau",

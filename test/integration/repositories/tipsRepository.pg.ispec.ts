@@ -1,6 +1,5 @@
 import TipsRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/tipsRepositoryPostgres'
-import TipsFactory from '../../../src/application/factories/tipsFactory'
-import {CreationAttributes, Sequelize} from 'sequelize'
+import {Sequelize} from 'sequelize'
 import SequelizeUtils from '../../../src/infrastructure/database/sequelizeUtils'
 import { tipsMocks } from '../../mocks/tips'
 import TipsSequelize from "../../../src/infrastructure/adapters/models/tips/tipsSequelize";
@@ -10,14 +9,14 @@ describe('TipsRepositoryPostgres', () => {
 
     beforeEach(async () => {
         pg = new SequelizeUtils().connect()
-        tipsMocks.forEach(tips => {
-            return TipsSequelize.create({
-                tips: tips.tips,
-                description: tips.description,
-                createdAt: tips.createdAt,
-                updatedAt: tips.updatedAt
+        for (const tipsMock of tipsMocks) {
+            await TipsSequelize.create({
+                tips: tipsMock.tips,
+                description: tipsMock.description,
+                createdAt: tipsMock.createdAt,
+                updatedAt: tipsMock.updatedAt
             })
-        })
+        }
     })
 
     test('should return correct tips from postsgres', async () => {

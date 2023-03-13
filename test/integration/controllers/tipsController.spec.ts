@@ -6,7 +6,7 @@ describe('Tips controller unit test', () => {
         offset: 0,
         order: 'desc',
     }
-    const res: object = {
+    const res = {
         send: jest.fn((): object => res),
         status: jest.fn((): object => res),
     }

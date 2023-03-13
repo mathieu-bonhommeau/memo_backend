@@ -1,6 +1,7 @@
 // Define all attribute available for the model
-import { DataTypes, literal, Model, Optional, Sequelize } from 'sequelize'
+import { DataTypes, literal, Model, Optional } from 'sequelize'
 import SequelizeUtils from '../../../database/sequelizeUtils'
+
 const db = new SequelizeUtils().connect()
 interface TipsAttributes {
     id: number
@@ -48,7 +49,6 @@ TipsSequelize.init(
         },
     },
     {
-        timestamps: true,
         sequelize: db,
         tableName: 'tips',
     },

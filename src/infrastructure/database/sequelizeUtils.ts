@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize'
 import * as dotenv from "dotenv";
+import * as process from "process";
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 export default class SequelizeUtils {
@@ -12,6 +13,9 @@ export default class SequelizeUtils {
                 host: `${process.env.POSTGRES_HOST as string}`,
                 port: parseInt(process.env.POSTGRES_PORT as string),
                 dialect: 'postgres',
+                define: {
+                    timestamps: process.env.NODE_ENV !== 'test'
+                }
             },
         )
     }
@@ -25,7 +29,10 @@ export default class SequelizeUtils {
                 host: `${process.env.POSTGRES_HOST as string}`,
                 port: parseInt(process.env.POSTGRES_PORT as string),
                 dialect: 'postgres',
-            },
+                define: {
+                    timestamps: process.env.NODE_ENV !== 'test'
+                }
+            }
         )
     }
 }
