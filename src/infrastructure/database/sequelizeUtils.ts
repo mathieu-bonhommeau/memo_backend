@@ -4,7 +4,7 @@ import * as process from "process";
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 export default class SequelizeUtils {
-    public connect(): Sequelize {
+    public static connect(): Sequelize {
         return new Sequelize(
             `${process.env.POSTGRES_DB as string}`,
             `${process.env.POSTGRES_USER as string}`,
@@ -20,7 +20,7 @@ export default class SequelizeUtils {
         )
     }
 
-    public rootConnect(): Sequelize {
+    public static rootConnect(): Sequelize {
         return new Sequelize(
             `postgres`,
             `${process.env.POSTGRES_USER as string}`,
@@ -34,5 +34,15 @@ export default class SequelizeUtils {
                 }
             }
         )
+    }
+
+    public static async  truncate(pg: Sequelize): Promise<boolean> {
+        try {
+            await pg.query('truncate table tips cascade')
+            return true
+        } catch (err) {
+            console.error(err)
+            return false
+        }
     }
 }

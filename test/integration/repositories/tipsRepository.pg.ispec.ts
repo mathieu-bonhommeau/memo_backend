@@ -8,7 +8,8 @@ describe('TipsRepositoryPostgres', () => {
     let pg: Sequelize
 
     beforeEach(async () => {
-        pg = new SequelizeUtils().connect()
+        pg = SequelizeUtils.connect()
+        await SequelizeUtils.truncate(pg)
         for (const tipsMock of tipsMocks) {
             await TipsSequelize.create({
                 tips: tipsMock.tips,

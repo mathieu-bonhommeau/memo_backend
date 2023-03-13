@@ -2,7 +2,7 @@
 import { DataTypes, literal, Model, Optional } from 'sequelize'
 import SequelizeUtils from '../../../database/sequelizeUtils'
 
-const db = new SequelizeUtils().connect()
+const db = SequelizeUtils.connect()
 interface TipsAttributes {
     id: number
     tips: string

@@ -1,7 +1,7 @@
 import EnvironmentController from '../../../src/infrastructure/controllers/environmentController'
 
 describe('Environment controller unit test', () => {
-    test('return a response 200 with an environment', async () => {
+    test('return a responses 200 with an environment', async () => {
         /*const req = {}
         const res = {
             send: jest.fn(() => res),

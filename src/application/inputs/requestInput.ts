@@ -1,19 +1,13 @@
 export default abstract class RequestInput {
     protected constructor(
-        protected readonly _start: number,
-        protected readonly _offset: number,
-        protected readonly _order: string,
+        protected readonly _start: number = 0,
+        protected readonly _offset: number = 10,
+        protected readonly _order: string = 'desc',
     ) {}
 
-    get start(): number {
-        return this._start
-    }
+    abstract get start(): number
 
-    get length(): number {
-        return this._offset
-    }
+    abstract get length(): number
 
-    get order(): string {
-        return this._order
-    }
+    abstract get order(): string
 }

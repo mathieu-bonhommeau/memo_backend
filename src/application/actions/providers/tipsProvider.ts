@@ -8,7 +8,7 @@ export default class TipsProvider extends Provider {
         super(tipsRepository)
     }
 
-    async provideAll(): Promise<Tips[]> {
-        return await this.tipsRepository.getAll()
+    public provideAll(): Promise<Tips[]> {
+        return this.tipsRepository.getAll()
     }
 }

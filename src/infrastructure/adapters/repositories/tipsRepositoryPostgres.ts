@@ -5,7 +5,7 @@ import TipsSequelize from '../models/tips/tipsSequelize'
 import { Sequelize } from 'sequelize'
 
 export default class TipsRepositoryPostgres implements TipsRepositoryInterface {
-    async getAll(): Promise<Array<Tips>> {
+    public async getAll(): Promise<Array<Tips>> {
         const tips = await TipsSequelize.findAll()
         return tips.map((el) => TipsFactory.create(el.tips, el.description, el.createdAt, el.updatedAt))
     }
