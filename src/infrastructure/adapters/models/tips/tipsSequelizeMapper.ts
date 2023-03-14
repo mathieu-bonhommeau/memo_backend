@@ -5,7 +5,7 @@ import { Sequelize } from 'sequelize'
 export default class TipsSequelizeMapper {
     constructor(private db: Sequelize, private tips: Tips) {}
 
-    synchronize(): boolean {
+    public synchronize(): boolean {
         try {
             TipsSequelize.build({
                 tips: this.tips.tips,

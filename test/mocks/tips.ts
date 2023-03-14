@@ -5,3 +5,4 @@ export const tipsMocks = [
     TipsFactory.create('sudo systemctl stop postgres', 'Stopper service postgres', new Date(), new Date()),
     TipsFactory.create('sudo systemctl status postgres', 'Etat service postgres', new Date(), new Date()),
 ]
+

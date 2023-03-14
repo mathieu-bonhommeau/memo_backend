@@ -13,7 +13,7 @@ type JsonResponse = {
 export default class PaginateResponse {
     constructor(private input: RequestInput, private models: Array<RootModel>) {}
 
-    paginate(): JsonResponse {
+    public paginate(): JsonResponse {
         const data = this.models.map((model) => {
             return { ...model }
         })

@@ -1,10 +1,9 @@
 import PaginateResponse from './paginateResponse'
 import RequestInput from '../inputs/requestInput'
-import Provider from '../actions/providers/provider'
-import RootModel from "../../domain/models/RootModel";
+import TipsProvider from "../actions/providers/tipsProvider";
 
 export default class TipsResponseOutput {
-    constructor(private input: RequestInput, private provider: Provider) {}
+    constructor(private input: RequestInput, private provider: TipsProvider) {}
 
     public getAll(): Promise<PaginateResponse | void> {
         return this.provider.provideAll()

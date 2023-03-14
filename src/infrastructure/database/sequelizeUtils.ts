@@ -39,6 +39,7 @@ export default class SequelizeUtils {
     public static async  truncate(pg: Sequelize): Promise<boolean> {
         try {
             await pg.query('truncate table tips cascade')
+            await pg.query('truncate table environments cascade')
             return true
         } catch (err) {
             console.error(err)

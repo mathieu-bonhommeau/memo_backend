@@ -1,6 +1,7 @@
 import SequelizeUtils from '../../src/infrastructure/database/sequelizeUtils'
 import * as dotenv from 'dotenv'
 import TipsSequelize from '../../src/infrastructure/adapters/models/tips/tipsSequelize'
+import EnvironmentSequelize from "../../src/infrastructure/adapters/models/environment/environmentSequelize";
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 module.exports = async () => {
@@ -15,6 +16,7 @@ module.exports = async () => {
 
         const pg = await SequelizeUtils.connect()
         await TipsSequelize.sync()
+        await EnvironmentSequelize.sync()
         await pg.close()
 
     } catch (error) {

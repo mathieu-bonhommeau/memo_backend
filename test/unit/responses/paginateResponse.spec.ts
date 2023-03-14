@@ -1,10 +1,21 @@
 import PaginateResponse from "../../../src/application/outputs/paginateResponse";
-import RequestInput from "../../../src/application/inputs/requestInput";
-import TipsRequestInput from "../../../src/application/inputs/tipsRequestInput";
+import RequestInputStub from "../../stubs/requestInputStub";
+import {tipsMocks} from "../../mocks/tips";
 
 describe('Pagination response', () => {
     test("should return an object with metadata for pagination", () => {
-        const requestInput = new TipsRequestInput() // Créer un mock qui étends de requestInput
-        const pagination = new PaginateResponse()
+        const requestInputStub = new RequestInputStub(0, 10, 'asc')
+
+        const pagination = new PaginateResponse(requestInputStub, tipsMocks)
+
+        expect(pagination.paginate()).toEqual({
+            data: tipsMocks,
+            metadata: {
+                start: 0,
+                length: 10,
+                recordsTotal: 3,
+                order: 'asc'
+            }
+        })
     })
 })

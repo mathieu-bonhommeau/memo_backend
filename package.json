@@ -13,9 +13,9 @@
     "prettier-format:win32": "prettier --config .prettierrc \"./(src|test)/**/*.ts\" --write",
     "prettier-format:default": "prettier --config .prettierrc '(src|test)/**/*.ts' --write",
     "pretty-lint": "npm run prettier-format && npm run lint",
-    "test-integration": "jest -c jest-integration.config.js",
-    "test-unit": "jest -c jest-unit.config.js",
-    "test": "jest -c jest.config.js"
+    "test-integration": "NODE_ENV=test jest -c jest-integration.config.js --runInBand",
+    "test-unit": "NODE_ENV=test jest -c jest-unit.config.js --runInBand",
+    "test": "NODE_ENV=test jest -c jest.config.js --runInBand"
   },
   "author": "Mathieu Bonhommeau",
   "license": "ISC",
