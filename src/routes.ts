@@ -8,6 +8,6 @@ const router = express.Router()
 router.get('/install-db', Install.installDb)
 
 router.get('/tips', TipsController.getAll)
-router.get('/environment', EnvironmentController.getAll)
+router.get('/environments', EnvironmentController.getAll)
 
 module.exports = router
