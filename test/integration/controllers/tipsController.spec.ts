@@ -1,8 +1,8 @@
-import { app } from '../../../src'
 import SequelizeUtils from "../../../src/infrastructure/database/sequelizeUtils";
 import {tipsMocks} from "../../mocks/tips";
 import TipsSequelize from "../../../src/infrastructure/adapters/models/tips/tipsSequelize";
 import {Sequelize} from "sequelize";
+import {app} from "../../../src/app";
 const request = require('supertest')
 
 describe('Tips controller test', () => {
@@ -19,6 +19,10 @@ describe('Tips controller test', () => {
                 updatedAt: tipsMock.updatedAt
             })
         }
+    })
+
+    beforeEach(async () => {
+        await pg.close()
     })
 
     test('GET /tips without queries for pagination', async () => {
