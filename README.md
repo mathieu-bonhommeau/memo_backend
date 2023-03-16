@@ -1,7 +1,7 @@
 # Application Memo
 In progress ...
 
-### for saved some commands 'tips' inline and sort them by environment
+### for saved some commands 'Tips' inline and sort them by environment
 
 This app is build with node/expressjs, sequelize, postgresql for the backend
 

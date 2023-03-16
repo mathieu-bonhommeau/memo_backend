@@ -1,6 +1,7 @@
 // Define all attribute available for the model
 import { DataTypes, literal, Model, Optional } from 'sequelize'
 import SequelizeUtils from '../../../database/sequelizeUtils'
+import TipSequelize from '../tips/tipSequelize'
 
 const db = SequelizeUtils.connect()
 interface EnvironmentAttributes {

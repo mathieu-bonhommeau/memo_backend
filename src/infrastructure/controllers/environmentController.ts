@@ -1,7 +1,7 @@
-import EnvironmentRequestInput from "../../application/inputs/environmentRequestInput";
-import EnvironmentProvider from "../../application/actions/providers/environmentProvider";
-import EnvironmentRepositoryPostgres from "../adapters/repositories/environmentRepositoryPostgres";
-import EnvironmentResponseOutput from "../../application/outputs/environmentResponseOutput";
+import EnvironmentRequestInput from '../../application/inputs/environmentRequestInput'
+import EnvironmentProvider from '../../application/actions/providers/environmentProvider'
+import EnvironmentRepositoryPostgres from '../adapters/repositories/environmentRepositoryPostgres'
+import EnvironmentResponseOutput from '../../application/outputs/environmentResponseOutput'
 
 export default class EnvironmentController {
     public static async getAll(req: any, res: any) {

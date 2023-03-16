@@ -1,9 +1,9 @@
-import PaginateResponse from "../../../src/application/outputs/paginateResponse";
-import RequestInputStub from "../../stubs/requestInputStub";
-import {tipsMocks} from "../../mocks/tips";
+import PaginateResponse from '../../../src/application/outputs/paginateResponse'
+import RequestInputStub from '../../stubs/requestInputStub'
+import { tipsMocks } from '../../mocks/tips'
 
 describe('Pagination response', () => {
-    test("should return an object with metadata for pagination", () => {
+    test('should return an object with metadata for pagination', () => {
         const requestInputStub = new RequestInputStub(0, 10, 'asc')
 
         const pagination = new PaginateResponse(requestInputStub, tipsMocks)
@@ -14,8 +14,8 @@ describe('Pagination response', () => {
                 start: 0,
                 length: 10,
                 recordsTotal: 3,
-                order: 'asc'
-            }
+                order: 'asc',
+            },
         })
     })
 })
