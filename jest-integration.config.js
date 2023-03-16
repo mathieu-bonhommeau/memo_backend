@@ -6,7 +6,7 @@ module.exports = {
     testTimeout: 10000,
     testRegex: '.*(.spec|.ispec).ts',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-    roots: ['<rootDir>/test/'],
+    roots: ['<rootDir>/test/integration'],
     modulePaths: ['<rootDir>'],
     globalSetup: '<rootDir>/test/jest/globalSetup.ts',
     //globalTeardown: '<rootDir>/test/jest/globalTeardown.ts',

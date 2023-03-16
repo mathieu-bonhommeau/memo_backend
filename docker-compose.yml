@@ -7,8 +7,8 @@ services:
     environment:
       POSTGRES_PASSWORD: password-root
       POSTGRES_USER: postgres
-      POSTGRES_DB: memo
-      CONTAINER_NAME: memo-pgsql-db
+      POSTGRES_DB: memo_backend
+      CONTAINER_NAME: memo_backend-pgsql-db
       PGDATA: /data/postgres
     ports:
       - "6432:5432"
