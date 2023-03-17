@@ -1,12 +1,10 @@
-import TipsRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/tipsRepositoryPostgres'
-import {Sequelize} from 'sequelize'
+import { Sequelize } from 'sequelize'
 import SequelizeUtils from '../../../src/infrastructure/database/sequelizeUtils'
 import { environmentsMocks } from '../../mocks/environments'
-import EnvironmentSequelize from "../../../src/infrastructure/adapters/models/environment/environmentSequelize";
-import EnvironmentRepositoryPostgres
-    from "../../../src/infrastructure/adapters/repositories/environmentRepositoryPostgres";
+import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'
+import EnvironmentRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/environmentRepositoryPostgres'
 
-describe('TipsRepositoryPostgres', () => {
+describe('EnvironmentRepositoryPostgres', () => {
     let pg: Sequelize
 
     beforeEach(async () => {
@@ -17,12 +15,12 @@ describe('TipsRepositoryPostgres', () => {
                 name: environmentsMock.name,
                 details: environmentsMock.details,
                 createdAt: environmentsMock.createdAt,
-                updatedAt: environmentsMock.updatedAt
+                updatedAt: environmentsMock.updatedAt,
             })
         }
     })
 
-    test('should return correct tips from postsgres', async () => {
+    test('should return correct Environment from postsgres', async () => {
         const environmentRepository = new EnvironmentRepositoryPostgres()
         const environments = await environmentRepository.getAll()
         expect(environments).toEqual(environmentsMocks)

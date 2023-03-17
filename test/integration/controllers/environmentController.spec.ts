@@ -1,9 +1,9 @@
-import {Sequelize} from "sequelize";
-import SequelizeUtils from "../../../src/infrastructure/database/sequelizeUtils";
+import { Sequelize } from 'sequelize'
+import SequelizeUtils from '../../../src/infrastructure/database/sequelizeUtils'
 const request = require('supertest')
-import {environmentsMocks} from "../../mocks/environments";
-import EnvironmentSequelize from "../../../src/infrastructure/adapters/models/environment/environmentSequelize";
-import {app} from "../../../src/app";
+import { environmentsMocks } from '../../mocks/environments'
+import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'
+import { app } from '../../../src/app'
 
 describe('Environment controller unit test', () => {
     let pg: Sequelize
@@ -16,7 +16,7 @@ describe('Environment controller unit test', () => {
                 name: environmentsMock.name,
                 details: environmentsMock.details,
                 createdAt: environmentsMock.createdAt,
-                updatedAt: environmentsMock.updatedAt
+                updatedAt: environmentsMock.updatedAt,
             })
         }
     })
@@ -27,8 +27,7 @@ describe('Environment controller unit test', () => {
 
     test('GET /environment without queries for pagination', async () => {
         try {
-            const response = await request(app)
-                .get('/environments')
+            const response = await request(app).get('/environments')
             expect(response.status).toBe(200)
             expect(response.headers['content-type']).toMatch(/json/)
             expect(response.body.data.length).toBe(2)

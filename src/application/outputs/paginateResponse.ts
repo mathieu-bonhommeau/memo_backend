@@ -1,5 +1,5 @@
 import RequestInput from '../inputs/requestInput'
-import RootModel from "../../domain/models/RootModel";
+import RootModel from '../../domain/models/RootModel'
 
 type JsonResponse = {
     data: object[]
