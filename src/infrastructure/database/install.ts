@@ -16,8 +16,8 @@ export default class Install {
             await rootPg.query(`CREATE DATABASE ${process.env.POSTGRES_DB} OWNER ${process.env.POSTGRES_USER}`)
             await rootPg.close()
             const pg = await SequelizeUtils.connect()
-            await TipSequelize.sync()
             await EnvironmentSequelize.sync()
+            await TipSequelize.sync()
             await pg.close()
 
             return res.status(200).send('Db installée !')

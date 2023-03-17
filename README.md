@@ -9,5 +9,6 @@ For the frontend :
 
 I use TDD approch and clean architecture
 
-TODO : 
-- CI CD : github action
+TODO :
+- [ ] CI CD : github action
+- [ ] Errors handlers

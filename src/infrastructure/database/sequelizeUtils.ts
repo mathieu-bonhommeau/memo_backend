@@ -39,7 +39,9 @@ export default class SequelizeUtils {
     public static async truncate(pg: Sequelize): Promise<boolean> {
         try {
             await pg.query('truncate table environments cascade')
+            await pg.query('alter sequence environments_id_seq restart with 1')
             await pg.query('truncate table tips cascade')
+            await pg.query('alter sequence tips_id_seq restart with 1')
             return true
         } catch (err) {
             console.error(err)
