@@ -1,7 +1,7 @@
 import TipRequestInput from '../../application/inputs/tipRequestInput'
 import TipRepositoryPostgres from '../adapters/repositories/tipRepositoryPostgres'
 import TipResponseOutput from '../../application/outputs/tipResponseOutput'
-import TipProvider from '../../application/actions/providers/tipProvider'
+import TipProvider from '../../application/providers/tipProvider'
 
 export default class TipController {
     public static async getAll(req: any, res: any) {

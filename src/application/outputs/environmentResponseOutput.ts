@@ -1,6 +1,6 @@
 import PaginateResponse from './paginateResponse'
 import RequestInput from '../inputs/requestInput'
-import EnvironmentProvider from '../actions/providers/environmentProvider'
+import EnvironmentProvider from '../providers/environmentProvider'
 
 export default class EnvironmentResponseOutput {
     constructor(private input: RequestInput, private provider: EnvironmentProvider) {}

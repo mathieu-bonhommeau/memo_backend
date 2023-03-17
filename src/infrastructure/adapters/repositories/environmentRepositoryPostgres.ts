@@ -8,4 +8,8 @@ export default class EnvironmentRepositoryPostgres implements EnvironmentReposit
         const environment = await EnvironmentSequelize.findAll()
         return environment.map((el) => EnvironmentFactory.create(el.name, el.details, el.createdAt, el.updatedAt))
     }
+
+    /*public async store(environmentDTO: EnvironmentDTOExpress): Promise<Environment> {
+        return Promise
+    }*/
 }

@@ -1,5 +1,5 @@
 import EnvironmentRequestInput from '../../application/inputs/environmentRequestInput'
-import EnvironmentProvider from '../../application/actions/providers/environmentProvider'
+import EnvironmentProvider from '../../application/providers/environmentProvider'
 import EnvironmentRepositoryPostgres from '../adapters/repositories/environmentRepositoryPostgres'
 import EnvironmentResponseOutput from '../../application/outputs/environmentResponseOutput'
 

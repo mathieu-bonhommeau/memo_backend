@@ -1,6 +1,6 @@
 import PaginateResponse from './paginateResponse'
 import RequestInput from '../inputs/requestInput'
-import TipProvider from '../actions/providers/tipProvider'
+import TipProvider from '../providers/tipProvider'
 
 export default class TipResponseOutput {
     constructor(private input: RequestInput, private provider: TipProvider) {}
