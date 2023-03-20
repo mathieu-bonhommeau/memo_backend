@@ -9,6 +9,6 @@ router.get('/install-db', Install.installDb)
 
 router.get('/tips', TipController.getAll)
 router.get('/environments', EnvironmentController.getAll)
-//router.post('/environments', Enrin)
+router.post('/environments', EnvironmentController.store)
 
 module.exports = router

@@ -2,6 +2,9 @@ import EnvironmentRepositoryInterface from '../../../domain/ports/repositories/e
 import Environment from '../../../domain/models/Environment'
 import EnvironmentFactory from '../../../application/factories/environmentFactory'
 import EnvironmentSequelize from '../models/environment/environmentSequelize'
+import EnvironmentSequelizeMapper from "../models/environment/environmentSequelizeMapper";
+import SequelizeUtils from "../../database/sequelizeUtils";
+const db = SequelizeUtils.connect()
 
 export default class EnvironmentRepositoryPostgres implements EnvironmentRepositoryInterface {
     public async getAll(): Promise<Array<Environment>> {
@@ -9,7 +12,9 @@ export default class EnvironmentRepositoryPostgres implements EnvironmentReposit
         return environment.map((el) => EnvironmentFactory.create(el.name, el.details, el.createdAt, el.updatedAt))
     }
 
-    /*public async store(environmentDTO: EnvironmentDTOExpress): Promise<Environment> {
-        return Promise
-    }*/
+    public async store(environment: Environment): Promise<Environment> {
+        console.log(environment)
+        const mapper = new EnvironmentSequelizeMapper(db, environment)
+        return await mapper.synchronize().save()
+    }
 }
