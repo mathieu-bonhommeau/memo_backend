@@ -1,5 +1,5 @@
-import EnvironmentRepositoryInterface from "../../domain/ports/repositories/environmentRepositoryInterface";
-import Environment from "../../domain/models/Environment";
+import EnvironmentRepositoryInterface from '../../domain/ports/repositories/environmentRepositoryInterface'
+import Environment from '../../domain/models/Environment'
 
 export default class EnvironmentAction {
     constructor(private environmentRepository: EnvironmentRepositoryInterface) {}

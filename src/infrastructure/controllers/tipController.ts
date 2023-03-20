@@ -2,6 +2,8 @@ import TipRequestInput from '../../application/inputs/tipRequestInput'
 import TipRepositoryPostgres from '../adapters/repositories/tipRepositoryPostgres'
 import TipResponseOutput from '../../application/outputs/tipResponseOutput'
 import TipProvider from '../../application/providers/tipProvider'
+import TipAction from '../../application/actions/tipAction'
+import TipExpressDTO from '../adapters/DTO/tipExpressDTO'
 
 export default class TipController {
     public static async getAll(req: any, res: any) {
@@ -16,6 +18,19 @@ export default class TipController {
             }
         } catch (err) {
             console.error(err)
+        }
+    }
+    public static async store(req: any, res: any) {
+        try {
+            const tip = new TipExpressDTO(req.body.command, req.body.description, req.body.environmentId).format()
+            const tipAction = new TipAction(new TipRepositoryPostgres())
+            const response = await tipAction.store(tip)
+
+            if (response) {
+                return res.status(201).json(response)
+            }
+        } catch (err) {
+            return res.status(400).json({ message: 'Bad request' })
         }
     }
 }

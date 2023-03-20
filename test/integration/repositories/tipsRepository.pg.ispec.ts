@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 import SequelizeUtils from '../../../src/infrastructure/database/sequelizeUtils'
-import { tipsMocks } from '../../mocks/tips'
+import { tipMock, tipsMocks } from '../../mocks/tips'
 import TipSequelize from '../../../src/infrastructure/adapters/models/tips/tipSequelize'
 import { environmentsMocks } from '../../mocks/environments'
 import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'
@@ -39,5 +39,18 @@ describe('TipRepositoryPostgres', () => {
         const tipRepository = new TipRepositoryPostgres()
         const tips = await tipRepository.getAll()
         expect(tips).toEqual(tipsMocks)
+    })
+
+    test('should create a new Tips from postgres and return it', async () => {
+        const tipRepository = new TipRepositoryPostgres()
+        const newTip = await tipRepository.store(tipMock)
+        expect(newTip).toEqual(
+            expect.objectContaining({
+                id: tipsMocks.length + 1,
+                command: 'sudo systemctl start postgres',
+                description: 'Démarrer service postgres',
+                environmentId: 1,
+            }),
+        )
     })
 })

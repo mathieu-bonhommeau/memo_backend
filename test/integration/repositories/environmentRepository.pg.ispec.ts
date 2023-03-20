@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 import SequelizeUtils from '../../../src/infrastructure/database/sequelizeUtils'
-import {environmentsMock, environmentsMocks} from '../../mocks/environments'
+import { environmentsMock, environmentsMocks } from '../../mocks/environments'
 import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'
 import EnvironmentRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/environmentRepositoryPostgres'
 
@@ -26,12 +26,14 @@ describe('EnvironmentRepositoryPostgres', () => {
         expect(environments).toEqual(environmentsMocks)
     })
 
-    test("should create a new environment and return it with its id", async () => {
+    test('should create a new environment and return it with its id', async () => {
         const environmentRepository = new EnvironmentRepositoryPostgres()
         const environment = await environmentRepository.store(environmentsMock)
-        expect(environment).toEqual(expect.objectContaining({
-            name: "Git",
-            details: "Logiciel de controle de version"
-        }))
+        expect(environment).toEqual(
+            expect.objectContaining({
+                name: 'Git',
+                details: 'Logiciel de controle de version',
+            }),
+        )
     })
 })

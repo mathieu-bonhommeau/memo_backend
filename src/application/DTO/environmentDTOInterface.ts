@@ -1,8 +1,8 @@
-import Environment from "../../domain/models/Environment";
+import Environment from '../../domain/models/Environment'
 
 export default interface EnvironmentDTOInterface {
     name: string
-    description: string
+    details: string
 
     format(): Environment
 }

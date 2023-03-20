@@ -25,7 +25,7 @@ describe('Environment controller unit test', () => {
         await pg.close()
     })
 
-    test('GET /environment without queries for pagination', async () => {
+    test('GET /environment', async () => {
         try {
             const response = await request(app).get('/environments')
             expect(response.status).toBe(200)
@@ -34,5 +34,20 @@ describe('Environment controller unit test', () => {
         } catch (err) {
             throw err
         }
+    })
+
+    test('POST /environment', async () => {
+        const response = await request(app).post('/environments').send({
+            name: 'Sequelize',
+            details: 'Bdd pour express js',
+        })
+        expect(response.status).toBe(201)
+        expect(response.headers['content-type']).toMatch(/json/)
+        expect(response.body).toEqual(
+            expect.objectContaining({
+                name: 'Sequelize',
+                details: 'Bdd pour express js',
+            }),
+        )
     })
 })

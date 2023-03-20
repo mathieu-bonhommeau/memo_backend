@@ -8,6 +8,7 @@ const router = express.Router()
 router.get('/install-db', Install.installDb)
 
 router.get('/tips', TipController.getAll)
+router.post('/tips', TipController.store)
 router.get('/environments', EnvironmentController.getAll)
 router.post('/environments', EnvironmentController.store)
 
