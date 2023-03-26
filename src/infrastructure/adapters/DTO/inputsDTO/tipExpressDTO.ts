@@ -1,6 +1,6 @@
-import TipDTOInterface from '../../../application/DTO/tipDTOInterface'
-import Tip from '../../../domain/models/Tip'
-import TipFactory from '../../../application/factories/tipFactory'
+import TipDTOInterface from '../../../../application/DTO/inputs/tipDTOInterface'
+import Tip from '../../../../domain/models/Tip'
+import TipFactory from '../../../../application/factories/tipFactory'
 
 export default class TipExpressDTO implements TipDTOInterface {
     public constructor(public command: string, public description: string, public environmentId: number) {}

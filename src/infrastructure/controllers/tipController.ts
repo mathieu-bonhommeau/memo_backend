@@ -1,17 +1,16 @@
 import TipRequestInput from '../../application/inputs/tipRequestInput'
 import TipRepositoryPostgres from '../adapters/repositories/tipRepositoryPostgres'
-import TipResponseOutput from '../../application/outputs/tipResponseOutput'
+import TipResponse from '../../application/outputs/tipResponse'
 import TipProvider from '../../application/providers/tipProvider'
 import TipAction from '../../application/actions/tipAction'
-import TipExpressDTO from '../adapters/DTO/tipExpressDTO'
+import TipExpressDTO from '../adapters/DTO/inputsDTO/tipExpressDTO'
 
 export default class TipController {
     public static async getAll(req: any, res: any) {
-        // Si nécessaire mettre en place un DTO avec une interface (expressDTO implements DTOInterface)
         try {
             const tipRequestInput = new TipRequestInput(req.start, req.offset, req.order)
             const tipProvider = new TipProvider(new TipRepositoryPostgres())
-            const response = await new TipResponseOutput(tipRequestInput, tipProvider).getAll()
+            const response = await new TipResponse(tipRequestInput, tipProvider).getAll()
 
             if (response) {
                 return res.status(200).json(response.paginate())

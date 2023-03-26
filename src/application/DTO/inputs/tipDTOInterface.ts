@@ -1,4 +1,4 @@
-import Tip from '../../domain/models/Tip'
+import Tip from '../../../domain/models/Tip'
 
 export default interface TipDTOInterface {
     command: string

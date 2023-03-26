@@ -1,6 +1,6 @@
 import EnvironmentRepositoryStub from '../../stubs/environmentRepositoryStub'
 import EnvironmentAction from '../../../src/application/actions/environmentAction'
-import EnvironmentExpressDTO from '../../../src/infrastructure/adapters/DTO/environmentExpressDTO'
+import EnvironmentExpressDTO from '../../../src/infrastructure/adapters/DTO/inputsDTO/environmentExpressDTO'
 
 describe('Environment action tests', () => {
     test('should create a new environment', async () => {

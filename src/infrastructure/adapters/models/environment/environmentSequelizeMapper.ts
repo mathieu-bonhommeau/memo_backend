@@ -5,7 +5,7 @@ import EnvironmentSequelize from './environmentSequelize'
 export default class EnvironmentSequelizeMapper {
     constructor(private db: Sequelize, private environment: Environment) {}
 
-    public synchronize(): EnvironmentSequelize {
+    public syncToSequelize(): EnvironmentSequelize {
         return EnvironmentSequelize.build({
             name: this.environment.name,
             details: this.environment.details,

@@ -1,7 +1,7 @@
 // Define all attribute available for the model
 import { DataTypes, literal, Model, Optional } from 'sequelize'
 import SequelizeUtils from '../../../database/sequelizeUtils'
-import TipSequelize from '../tips/tipSequelize'
+import Tip from '../../../../domain/models/Tip'
 
 const db = SequelizeUtils.connect()
 interface EnvironmentAttributes {
@@ -22,6 +22,7 @@ export default class EnvironmentSequelize extends Model<EnvironmentAttributes, E
     public details: string
     public readonly createdAt!: Date
     public readonly updatedAt!: Date
+    public tips: Tip[] | null
 }
 
 EnvironmentSequelize.init(

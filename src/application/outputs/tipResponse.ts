@@ -1,15 +1,15 @@
 import PaginateResponse from './paginateResponse'
 import RequestInput from '../inputs/requestInput'
-import EnvironmentProvider from '../providers/environmentProvider'
+import TipProvider from '../providers/tipProvider'
 
-export default class EnvironmentResponseOutput {
-    constructor(private input: RequestInput, private provider: EnvironmentProvider) {}
+export default class TipResponse {
+    constructor(private input: RequestInput, private provider: TipProvider) {}
 
     public getAll(): Promise<PaginateResponse | void> {
         return this.provider
             .provideAll()
-            .then((environment) => {
-                return new PaginateResponse(this.input, environment)
+            .then((tips) => {
+                return new PaginateResponse(this.input, tips)
             })
             .catch((error) => {
                 throw error
