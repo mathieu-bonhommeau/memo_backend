@@ -46,4 +46,34 @@ describe('Tip controller test', () => {
             throw err
         }
     })
+
+    test('POST /tips', async () => {
+        const response = await request(app).post('/tips').send({
+            command: 'npm run start',
+            description: 'Launch une app js',
+            environmentId: 1,
+        })
+        expect(response.status).toBe(201)
+        expect(response.headers['content-type']).toMatch(/json/)
+        expect(response.body).toEqual(
+            expect.objectContaining({
+                command: 'npm run start',
+                description: 'Launch une app js',
+                environmentId: 1,
+            }),
+        )
+    })
+
+    test('POST /tips with an unknown environmentId', async () => {
+        const response = await request(app).post('/tips').send({
+            command: 'npm run start',
+            description: 'Launch une app js',
+            environmentId: 10,
+        })
+        expect(response.status).toBe(400)
+        expect(response.headers['content-type']).toMatch(/json/)
+        expect(response.body).toEqual({
+            message: 'Bad request',
+        })
+    })
 })

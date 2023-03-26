@@ -6,4 +6,8 @@ export default class TipRepositoryStub implements TipRepositoryInterface {
     async getAll(): Promise<Array<Tip>> {
         return tipsMocks
     }
+
+    async store(tip: Tip): Promise<Tip> {
+        return tip
+    }
 }

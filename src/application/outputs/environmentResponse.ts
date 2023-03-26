@@ -1,13 +1,24 @@
 import PaginateResponse from './paginateResponse'
 import RequestInput from '../inputs/requestInput'
-import EnvironmentProvider from '../actions/providers/environmentProvider'
+import EnvironmentProvider from '../providers/environmentProvider'
 
-export default class EnvironmentResponseOutput {
+export default class EnvironmentResponse {
     constructor(private input: RequestInput, private provider: EnvironmentProvider) {}
 
     public getAll(): Promise<PaginateResponse | void> {
         return this.provider
             .provideAll()
+            .then((environment) => {
+                return new PaginateResponse(this.input, environment)
+            })
+            .catch((error) => {
+                throw error
+            })
+    }
+
+    public getAllWithTips(): Promise<PaginateResponse | void> {
+        return this.provider
+            .provideAllWithTips()
             .then((environment) => {
                 return new PaginateResponse(this.input, environment)
             })

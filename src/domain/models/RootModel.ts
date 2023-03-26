@@ -1,3 +1,3 @@
 export default abstract class RootModel {
-    protected constructor(public createdAt: Date, public updatedAt: Date) {}
+    protected constructor(public id: number | null, public createdAt: Date, public updatedAt: Date) {}
 }
