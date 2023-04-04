@@ -34,6 +34,9 @@
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint": "^8.37.0",
     "run-script-os": "^1.1.6",
     "sequelize-cli": "^6.6.0",
     "supertest": "^6.3.3",
