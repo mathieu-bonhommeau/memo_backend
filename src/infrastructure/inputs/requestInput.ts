@@ -7,7 +7,7 @@ export default abstract class RequestInput {
 
     abstract get start(): number
 
-    abstract get length(): number
+    abstract get offset(): number
 
     abstract get order(): string
 }

@@ -1,4 +1,4 @@
-import TipRequestInput from '../../application/inputs/tipRequestInput'
+import TipRequestInput from '../inputs/tipRequestInput'
 import TipRepositoryPostgres from '../adapters/repositories/tipRepositoryPostgres'
 import TipResponse from '../../application/outputs/tipResponse'
 import TipProvider from '../../application/providers/tipProvider'

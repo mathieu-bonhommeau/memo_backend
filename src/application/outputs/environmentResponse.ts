@@ -1,5 +1,5 @@
 import PaginateResponse from './paginateResponse'
-import RequestInput from '../inputs/requestInput'
+import RequestInput from '../../infrastructure/inputs/requestInput'
 import EnvironmentProvider from '../providers/environmentProvider'
 
 export default class EnvironmentResponse {

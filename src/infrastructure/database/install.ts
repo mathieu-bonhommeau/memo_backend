@@ -1,4 +1,4 @@
-import SequelizeUtils from './sequelizeUtils'
+import SequelizeUtils from './pgUtils'
 import EnvironmentSequelize from '../adapters/models/environment/environmentSequelize'
 import TipSequelize from '../adapters/models/tips/tipSequelize'
 

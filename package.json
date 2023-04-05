@@ -28,8 +28,10 @@
     "pg": "^8.10.0",
     "postgres": "^3.3.4",
     "prettier": "^2.8.4",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^6.29.1",
-    "ts-jest": "^29.0.5"
+    "ts-jest": "^29.0.5",
+    "typedi": "^0.10.0"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

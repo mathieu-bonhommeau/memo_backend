@@ -1,15 +1,17 @@
-import EnvironmentRequestInput from '../../application/inputs/environmentRequestInput'
+import EnvironmentRequestInput from '../inputs/environmentRequestInput'
 import EnvironmentProvider from '../../application/providers/environmentProvider'
 import EnvironmentRepositoryPostgres from '../adapters/repositories/environmentRepositoryPostgres'
 import EnvironmentResponse from '../../application/outputs/environmentResponse'
 import EnvironmentExpressDTO from '../adapters/DTO/inputsDTO/environmentExpressDTO'
 import EnvironmentAction from '../../application/actions/environmentAction'
+import EnvironmentRepositoryInterface from "../../domain/ports/repositories/environmentRepositoryInterface";
 
 export default class EnvironmentController {
-    public static async getAll(req: any, res: any) {
+    constructor(private environmentRepository: EnvironmentRepositoryInterface) {}
+    public async getAll(req: any, res: any) {
         try {
-            const environmentRequestInput = new EnvironmentRequestInput(req.start, req.offset, req.order)
-            const environmentProvider = new EnvironmentProvider(new EnvironmentRepositoryPostgres())
+            const environmentRequestInput = EnvironmentRequestInput.buildFromRequest(req.params)
+            const environmentProvider = new EnvironmentProvider(this.environmentRepository)
             const response = await new EnvironmentResponse(environmentRequestInput, environmentProvider).getAll()
 
             if (response) {

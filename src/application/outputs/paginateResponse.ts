@@ -1,4 +1,4 @@
-import RequestInput from '../inputs/requestInput'
+import RequestInput from '../../infrastructure/inputs/requestInput'
 import RootModel from '../../domain/models/RootModel'
 
 type JsonResponse = {

@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import SequelizeUtils from '../../../src/infrastructure/database/sequelizeUtils'
+import SequelizeUtils from '../../../src/infrastructure/database/pgUtils'
 import { tipMock, tipsMocks } from '../../mocks/tips'
 import TipSequelize from '../../../src/infrastructure/adapters/models/tips/tipSequelize'
 import { environmentsMocks } from '../../mocks/environments'
