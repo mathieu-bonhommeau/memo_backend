@@ -15,4 +15,4 @@ TODO :
 - [ ] jwt auth
 - [ ] remove orm
 - [ ] handlers errors / middleware
-- [ ] 
+- [ ] container de service (db connection, repo...) + DI

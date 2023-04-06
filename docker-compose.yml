@@ -15,6 +15,9 @@ services:
     networks:
       - memo-backend
     restart: unless-stopped
+    entrypoint: ['psql', '-U', 'postgres', '-d', 'memo_backend', '-f', 'data/create_sql']
+    volumes:
+      - ./data:/var/lib/postgresql/data
 
 networks:
   memo-backend:

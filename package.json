@@ -15,7 +15,8 @@
     "pretty-lint": "npm run prettier-format && npm run lint",
     "test-integration": "NODE_ENV=test jest -c jest-integration.config.js --runInBand",
     "test-unit": "NODE_ENV=test jest -c jest-unit.config.js --runInBand",
-    "test": "NODE_ENV=test jest -c jest.config.js --runInBand"
+    "test": "NODE_ENV=test jest -c jest.config.js --runInBand",
+    "resetDB": "docker compose up -d --build"
   },
   "author": "Mathieu Bonhommeau",
   "license": "ISC",
