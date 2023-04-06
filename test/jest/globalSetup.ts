@@ -1,8 +1,8 @@
-import SequelizeUtils from '../../src/infrastructure/database/pgUtils'
+import SequelizeUtils from '../../src/_common/pgUtils'
 import * as dotenv from 'dotenv'
 import EnvironmentSequelize from '../../src/infrastructure/adapters/models/environment/environmentSequelize'
 import TipSequelize from '../../src/infrastructure/adapters/models/tips/tipSequelize'
-import PgUtils from "../../src/infrastructure/database/pgUtils";
+import PgUtils from "../../src/_common/pgUtils";
 import {Sql} from "postgres";
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 

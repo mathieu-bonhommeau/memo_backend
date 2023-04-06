@@ -1,23 +1,25 @@
-version: '3.5'
+version: '3.8'
 
 services:
   postgres:
-    container_name: postgres_container
+    container_name: postgres_container_memo
     image: postgres
     environment:
-      POSTGRES_PASSWORD: password-root
       POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password-root
       POSTGRES_DB: memo_backend
-      CONTAINER_NAME: memo_backend-pgsql-db
-      PGDATA: /data/postgres
     ports:
       - "6432:5432"
     networks:
       - memo-backend
     restart: unless-stopped
-    entrypoint: ['psql', '-U', 'postgres', '-d', 'memo_backend', '-f', 'data/create_sql']
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - pgsql-data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d/dump.sql
+
+volumes:
+  pgsql-data:
+    driver: local
 
 networks:
   memo-backend:

@@ -1,4 +1,4 @@
-import Install from './infrastructure/database/install'
+import Install from './_init/InitDb'
 import EnvironmentController from './infrastructure/controllers/environmentController'
 import TipController from './infrastructure/controllers/tipController'
 const express = require('express')

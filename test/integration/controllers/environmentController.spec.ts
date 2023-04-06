@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import SequelizeUtils from '../../../src/infrastructure/database/pgUtils'
+import SequelizeUtils from '../../../src/_common/pgUtils'
 const request = require('supertest')
 import { environmentsMocks, environmentsMocksWithTips } from '../../mocks/environments'
 import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'

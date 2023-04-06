@@ -1,4 +1,4 @@
-import SequelizeUtils from '../../../src/infrastructure/database/pgUtils'
+import SequelizeUtils from '../../../src/_common/pgUtils'
 import { Sequelize } from 'sequelize'
 import { app } from '../../../src/app'
 import { tipsMocks } from '../../mocks/tips'

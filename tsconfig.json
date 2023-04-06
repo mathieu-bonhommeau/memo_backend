@@ -1,20 +1,22 @@
 {
     "compilerOptions": {
-        "target": "es2017",
-        "module": "commonjs",
-        "lib": ["es6"],
-        "allowJs": true,
-        "outDir": "build",
+        "outDir": "./build/",
         "baseUrl": ".",
         "rootDir": ".",
-        "strict": true,
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "target": "es5",
+        "downlevelIteration": true,
+        "allowJs": true,
+        "moduleResolution": "node",
         "esModuleInterop": true,
-        "types": ["node", "jest"],
-        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
         "strictPropertyInitialization": false,
     },
     "include": ["src/**/*"],
-    "exclude": ["test/**/*"],
+    "exclude": ["test/**/*"]
 }
+

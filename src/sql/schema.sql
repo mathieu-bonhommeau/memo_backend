@@ -1,6 +1,7 @@
+
 DROP TABLE IF EXISTS
-    tips,
-    environments;
+    environments,
+    tips;
 
 CREATE TABLE IF NOT EXISTS environments (
     id uuid PRIMARY KEY,
@@ -20,5 +21,4 @@ CREATE TABLE IF NOT EXISTS tips (
 );
 
 ALTER TABLE tips
-ADD CONSTRAINT fk_environment_tips FOREIGN KEY (environment_id) REFERENCES environments;
-
+    ADD CONSTRAINT fk_environment_tips FOREIGN KEY (environment_id) REFERENCES tips (id);

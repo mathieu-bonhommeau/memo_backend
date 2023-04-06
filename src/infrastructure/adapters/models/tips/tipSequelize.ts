@@ -1,6 +1,6 @@
 // Define all attribute available for the model
 import { DataTypes, literal, Model, Optional } from 'sequelize'
-import SequelizeUtils from '../../../database/pgUtils'
+import SequelizeUtils from '../../../../_common/pgUtils'
 import EnvironmentSequelize from '../environment/environmentSequelize'
 
 const db = SequelizeUtils.connect()

@@ -3,11 +3,11 @@ import Environment from '../../../domain/models/Environment'
 import EnvironmentFactory from '../../../application/factories/environmentFactory'
 import EnvironmentSequelize from '../models/environment/environmentSequelize'
 import EnvironmentSequelizeMapper from '../models/environment/environmentSequelizeMapper'
-import SequelizeUtils from '../../database/pgUtils'
+import SequelizeUtils from '../../../_common/pgUtils'
 import TipSequelize from '../models/tips/tipSequelize'
 import EnvironmentWithTipsDTO from '../DTO/outputsDTO/EnvironmentWithTipsDTO'
 import TipSequelizeMapper from '../models/tips/tipSequelizeMapper'
-import PgUtils from "../../database/pgUtils";
+import PgUtils from "../../../_common/pgUtils";
 import {Row, RowList, Sql} from "postgres";
 import {Service} from "typedi";
 const db = SequelizeUtils.connect()

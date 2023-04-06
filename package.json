@@ -8,7 +8,7 @@
     "start": "NODE_ENV=dev node build/src/index.js",
     "dev": "NODE_ENV=dev nodemon build/src/index.js",
     "build": "rimraf ./build && tsc",
-    "init-db": "node ./src/infrastructure/database/install.ts",
+    "init-db": "node src/_init/InitDb.ts",
     "prettier-format": "run-script-os",
     "prettier-format:win32": "prettier --config .prettierrc \"./(src|test)/**/*.ts\" --write",
     "prettier-format:default": "prettier --config .prettierrc '(src|test)/**/*.ts' --write",
@@ -16,7 +16,7 @@
     "test-integration": "NODE_ENV=test jest -c jest-integration.config.js --runInBand",
     "test-unit": "NODE_ENV=test jest -c jest-unit.config.js --runInBand",
     "test": "NODE_ENV=test jest -c jest.config.js --runInBand",
-    "resetDB": "docker compose up -d --build"
+    "resetDB": "NODE_ENV=dev ts-node-esm src/_init/init.ts"
   },
   "author": "Mathieu Bonhommeau",
   "license": "ISC",
@@ -32,6 +32,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.29.1",
     "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
     "typedi": "^0.10.0"
   },
   "devDependencies": {

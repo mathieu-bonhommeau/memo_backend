@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import SequelizeUtils from '../../../src/infrastructure/database/pgUtils'
+import SequelizeUtils from '../../../src/_common/pgUtils'
 import { environmentsMock, environmentsMocks, environmentsMocksWithTips } from '../../mocks/environments'
 import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'
 import EnvironmentRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/environmentRepositoryPostgres'
