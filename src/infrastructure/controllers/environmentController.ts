@@ -1,18 +1,25 @@
 import EnvironmentRequestInput from '../inputs/environmentRequestInput'
-import EnvironmentProvider from '../../application/providers/environmentProvider'
+import EnvironmentProvider from '../../application/services/environmentService'
 import EnvironmentRepositoryPostgres from '../adapters/repositories/environmentRepositoryPostgres'
-import EnvironmentResponse from '../../application/outputs/environmentResponse'
+import EnvironmentResponse from '../../application/responses/environmentResponse'
 import EnvironmentExpressDTO from '../adapters/DTO/inputsDTO/environmentExpressDTO'
 import EnvironmentAction from '../../application/actions/environmentAction'
 import EnvironmentRepositoryInterface from "../../domain/ports/repositories/environmentRepositoryInterface";
+import EnvironmentService from "../../application/services/environmentService";
+import PaginatedRequestDTO from "../../application/DTO/paginatedRequestDTO";
 
 export default class EnvironmentController {
-    constructor(private environmentRepository: EnvironmentRepositoryInterface) {}
+    private readonly environmentService: EnvironmentService
+    constructor() {
+        // change this in DI with only interface
+        this.environmentService = new EnvironmentService()
+    }
     public async getAll(req: any, res: any) {
         try {
-            const environmentRequestInput = EnvironmentRequestInput.buildFromRequest(req.params)
-            const environmentProvider = new EnvironmentProvider(this.environmentRepository)
-            const response = await new EnvironmentResponse(environmentRequestInput, environmentProvider).getAll()
+            const paginatedRequest:PaginatedRequestDTO = PaginatedRequestDTO.buildFromRequest(req.params)
+            const response = EnvironmentResponse.getAll(
+                paginatedRequest, this.environmentService
+            )
 
             if (response) {
                 return res.status(200).json(response.paginate())
@@ -24,12 +31,8 @@ export default class EnvironmentController {
 
     public static async getAllWithTips(req: any, res: any) {
         try {
-            const environmentRequestInput = new EnvironmentRequestInput(req.start, req.offset, req.order)
-            const environmentProvider = new EnvironmentProvider(new EnvironmentRepositoryPostgres())
-            const response = await new EnvironmentResponse(
-                environmentRequestInput,
-                environmentProvider,
-            ).getAllWithTips()
+            const paginatedRequest:PaginatedRequestDTO = PaginatedRequestDTO.buildFromRequest(req.params)
+            const response = EnvironmentResponse.getAllWithTips(paginatedRequest, this.environmentService)
 
             if (response) {
                 return res.status(200).json(response.paginate())

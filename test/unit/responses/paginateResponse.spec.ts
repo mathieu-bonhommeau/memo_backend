@@ -1,4 +1,4 @@
-import PaginateResponse from '../../../src/application/outputs/paginateResponse'
+import PaginateResponse from '../../../src/application/responses/paginateResponse'
 import RequestInputStub from '../../stubs/requestInputStub'
 import { tipsMocks } from '../../mocks/tips'
 

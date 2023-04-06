@@ -1,6 +1,6 @@
 import EnvironmentRepositoryStub from '../../stubs/environmentRepositoryStub'
 import { environmentsMocks, environmentsMocksWithTips } from '../../mocks/environments'
-import EnvironmentProvider from '../../../src/application/providers/environmentProvider'
+import EnvironmentProvider from '../../../src/application/services/environmentService'
 
 describe('Environment provider test', () => {
     test('should return environment objects', async () => {

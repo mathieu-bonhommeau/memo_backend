@@ -15,12 +15,16 @@ const db = SequelizeUtils.connect()
 
 export default class EnvironmentRepositoryPostgres implements EnvironmentRepositoryInterface {
 
+    private pg: Sql
+    constructor() {
+        this.pg = PgUtils.connect()
+    }
+
     public async getAll(): Promise<Environment[]> {
-        const pg: Sql = PgUtils.connect()
-        return pg`select * from environments`.then((rows: RowList<Row[]>) => {
+        return this.pg`select * from environments`.then((rows: RowList<Row[]>) => {
             if (rows.length > 0) {
-                return rows.map((el: Row) =>
-                    EnvironmentFactory.create(el.id, el.name, el.details, el.createdAt, el.updatedAt),
+                return rows.map((row: Row) =>
+                    EnvironmentFactory.create(row.id, row.name, row.details, row.created_at, row.updated_at),
                 )
             }
             return []
@@ -28,7 +32,18 @@ export default class EnvironmentRepositoryPostgres implements EnvironmentReposit
     }
 
     public async getAllWithTips(): Promise<Array<EnvironmentWithTipsDTO>> {
-        const environment = await EnvironmentSequelize.findAll({
+        return this.pg`select e.*, t.* from environments as e 
+                       join tips as t on t.environment_id = e.id`
+            .then(rows => {
+                if (rows.length > 0) {
+                    return rows.map((row: Row) => {
+                            return EnvironmentFactory.createWithTips(row.id, row.name, row.details, row.createdAt, row.updatedAt, mappedTips)
+                        }
+                    )
+                }
+                return []
+            })
+        /*const environment = await EnvironmentSequelize.findAll({
             include: {
                 model: TipSequelize,
                 as: 'tips',
@@ -40,7 +55,7 @@ export default class EnvironmentRepositoryPostgres implements EnvironmentReposit
                     return new TipSequelizeMapper(tip).syncToTip()
                 }) || null
             return EnvironmentFactory.createWithTips(el.id, el.name, el.details, el.createdAt, el.updatedAt, mappedTips)
-        })
+        })*/
     }
 
     public async store(environment: Environment): Promise<Environment> {

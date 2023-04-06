@@ -1,7 +1,7 @@
 import TipRequestInput from '../inputs/tipRequestInput'
 import TipRepositoryPostgres from '../adapters/repositories/tipRepositoryPostgres'
-import TipResponse from '../../application/outputs/tipResponse'
-import TipProvider from '../../application/providers/tipProvider'
+import TipResponse from '../../application/responses/tipResponse'
+import TipProvider from '../../application/services/tipProvider'
 import TipAction from '../../application/actions/tipAction'
 import TipExpressDTO from '../adapters/DTO/inputsDTO/tipExpressDTO'
 

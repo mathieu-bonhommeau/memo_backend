@@ -14,5 +14,5 @@ TODO :
 - [ ] Errors handlers
 - [ ] jwt auth
 - [ ] remove orm
-- [ ] handlers errors / middleware
+- [ ] handlers errors / middleware / wrapper for remove catch
 - [ ] container de service (db connection, repo...) + DI

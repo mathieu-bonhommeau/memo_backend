@@ -1,4 +1,4 @@
-import TipProvider from '../../../src/application/providers/tipProvider'
+import TipProvider from '../../../src/application/services/tipProvider'
 import TipRepositoryStub from '../../stubs/tipRepositoryStub'
 import { tipsMocks } from '../../mocks/tips'
 

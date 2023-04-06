@@ -2,7 +2,7 @@ import RootModel from './RootModel'
 
 export default class Environment extends RootModel {
     constructor(
-        public id: number | null,
+        id: string,
         public name: string,
         public details: string,
         createdAt: Date,

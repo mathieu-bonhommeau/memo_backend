@@ -16,7 +16,8 @@
     "test-integration": "NODE_ENV=test jest -c jest-integration.config.js --runInBand",
     "test-unit": "NODE_ENV=test jest -c jest-unit.config.js --runInBand",
     "test": "NODE_ENV=test jest -c jest.config.js --runInBand",
-    "resetDB": "NODE_ENV=dev ts-node-esm src/_init/init.ts"
+    "resetDB": "NODE_ENV=dev ts-node-esm src/_init/init.ts",
+    "seedDB": "NODE_ENV=dev ts-node-esm src/_init/seed.ts"
   },
   "author": "Mathieu Bonhommeau",
   "license": "ISC",
@@ -44,6 +45,7 @@
     "run-script-os": "^1.1.6",
     "sequelize-cli": "^6.6.0",
     "supertest": "^6.3.3",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "@faker-js/faker": "^7.6.0"
   }
 }
