@@ -36,7 +36,7 @@ describe('Tip controller test', () => {
         await pg.close()
     })
 
-    test('GET /Tips without queries for pagination', async () => {
+    test('GET /Tips without inputs for pagination', async () => {
         try {
             const response = await request(app).get('/tips')
             expect(response.status).toBe(200)

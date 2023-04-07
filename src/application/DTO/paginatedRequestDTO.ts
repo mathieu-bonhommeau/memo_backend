@@ -1,8 +1,12 @@
-import PaginateResponse from "../responses/paginateResponse";
 import {Order} from "../../domain/types/enums";
-import PaginatedQuery from "../../infrastructure/inputs/queries/PaginatedQuery";
-import EnvironmentsRequestDTO from "./environment/EnvironmentRequestDTO";
 
 export default abstract class PaginatedRequestDTO {
-    protected constructor(start: number, offset: number, order: Order) {}
+    public start: number
+    public offset: number
+    public order: Order
+    protected constructor(start: number, offset: number, order: Order) {
+        this.start = start
+        this.offset = offset
+        this.order = order
+    }
 }

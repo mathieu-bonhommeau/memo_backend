@@ -1,3 +1,7 @@
-export default abstract class PaginatedQuery {
-    protected constructor(protected start: number, protected offset: number, protected order: string) {}
+import {Order} from "../../../domain/types/enums";
+
+export default interface PaginateRequestQuery {
+    start: number
+    offset: number,
+    order: Order
 }

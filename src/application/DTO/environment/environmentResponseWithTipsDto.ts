@@ -1,10 +1,10 @@
-import PaginateResponse from "../responses/paginateResponse";
-import PaginatedRequestDTO, {PaginatedQuery} from "../paginatedRequestDTO";
+import PaginatedRequestDTO from "../paginatedRequestDTO";
 import {Order} from "../../../domain/types/enums";
+import PaginatedQuery from "../../../infrastructure/inputs/queries/PaginatedQuery";
 
 
-export default class EnvironmentsRequestDTO extends PaginatedRequestDTO {
-    private constructor(private start: number, private offset: number, private order: Order) {
+export default class EnvironmentsResponseWithTipsDTO  {
+    private constructor(start: number, offset: number, order: Order) {
         super(start, offset, order);
     }
 

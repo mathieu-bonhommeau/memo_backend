@@ -7,18 +7,20 @@ import EnvironmentAction from '../../application/actions/environmentAction'
 import EnvironmentRepositoryInterface from "../../domain/ports/repositories/environmentRepositoryInterface";
 import EnvironmentService from "../../application/services/environmentService";
 import PaginatedRequestDTO from "../../application/DTO/paginatedRequestDTO";
+import EnvironmentsRequestDTO from "../../application/DTO/environment/environmentsRequestDTO";
 
 export default class EnvironmentController {
     private readonly environmentService: EnvironmentService
     constructor() {
         // change this in DI with only interface
-        this.environmentService = new EnvironmentService()
+        this.environmentService = new EnvironmentService(new EnvironmentRepositoryPostgres())
     }
     public async getAll(req: any, res: any) {
         try {
-            const environmentRequest:EnvironmentRequestDTO = EnvironmentRequestDTO.buildFromRequest(req.params)
-            const response = EnvironmentResponse.getAll(
-                paginatedRequest, this.environmentService
+            const environmentsRequestDTO:EnvironmentsRequestDTO = EnvironmentsRequestDTO.buildFromRequest(req.params)
+
+            const response = await EnvironmentResponse.getAll(
+                environmentsRequestDTO, this.environmentService
             )
 
             if (response) {
@@ -31,8 +33,10 @@ export default class EnvironmentController {
 
     public static async getAllWithTips(req: any, res: any) {
         try {
-            const paginatedRequest:PaginatedRequestDTO = PaginatedRequestDTO.buildFromRequest(req.params)
-            const response = EnvironmentResponse.getAllWithTips(paginatedRequest, this.environmentService)
+            const paginatedRequest:PaginatedRequestDTO = EnvironmentsRequestDTO.buildFromRequest(req.params)
+            const response = EnvironmentResponse.getAllWithTips(
+                environmentsRequestDTO, this.environmentService
+            )
 
             if (response) {
                 return res.status(200).json(response.paginate())

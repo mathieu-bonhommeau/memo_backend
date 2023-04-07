@@ -3,11 +3,11 @@ import PaginatedRequestDTO from "../DTO/paginatedRequestDTO";
 import {JsonResponse} from "../../domain/types/types";
 
 export default class PaginateResponse {
-    constructor(private paginatedRequestDTO: PaginatedRequestDTO, private models: Array<RootModel>) {}
+    constructor(private paginatedRequestDTO: PaginatedRequestDTO, private responseDTO: Array<ResponseDTO>) {}
 
     public paginate(): JsonResponse {
-        const data = this.models.map((model) => {
-            return { ...model }
+        const data = this.responseDTO.map((object) => {
+            return { ...object }
         })
 
         return {
