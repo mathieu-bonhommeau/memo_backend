@@ -16,7 +16,7 @@ export default class EnvironmentController {
     }
     public async getAll(req: any, res: any) {
         try {
-            const paginatedRequest:PaginatedRequestDTO = PaginatedRequestDTO.buildFromRequest(req.params)
+            const environmentRequest:EnvironmentRequestDTO = EnvironmentRequestDTO.buildFromRequest(req.params)
             const response = EnvironmentResponse.getAll(
                 paginatedRequest, this.environmentService
             )

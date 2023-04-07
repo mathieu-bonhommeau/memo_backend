@@ -1,24 +1,8 @@
 import PaginateResponse from "../responses/paginateResponse";
+import {Order} from "../../domain/types/enums";
+import PaginatedQuery from "../../infrastructure/inputs/queries/PaginatedQuery";
+import EnvironmentsRequestDTO from "./environment/EnvironmentRequestDTO";
 
-enum Order {
-    'ASC',
-    'DESC'
-}
-
-export interface PaginatedQuery {
-    start: number,
-    offset: number,
-    order: Order
-}
-
-export default class PaginatedRequestDTO {
-    private constructor(public start: number, public offset: number, public order: Order) {}
-
-    public static buildFromRequest(params: PaginatedQuery) {
-        return new PaginatedRequestDTO(
-            params.start,
-            params.offset,
-            params.order
-        )
-    }
+export default abstract class PaginatedRequestDTO {
+    protected constructor(start: number, offset: number, order: Order) {}
 }

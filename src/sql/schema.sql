@@ -24,3 +24,6 @@ CREATE TABLE IF NOT EXISTS tips (
 ALTER TABLE tips
     ADD CONSTRAINT fk_environment_tips FOREIGN KEY ("environment_id") REFERENCES environments ("id");
 
+CREATE OR REPLACE VIEW environment_with_tips AS
+SELECT e.id as environment_id, e.name, t.id, t.command, t.description from environments as e
+JOIN tips as t on e.id = t.environment_id;

@@ -1,20 +1,7 @@
 import RootModel from '../../domain/models/RootModel'
 import PaginatedRequestDTO from "../DTO/paginatedRequestDTO";
+import {JsonResponse} from "../../domain/types/types";
 
-enum Order {
-    'ASC',
-    'DESC'
-}
-
-type JsonResponse = {
-    data: object[]
-    metadata: {
-        start: number
-        length: number
-        recordsTotal: number
-        order: Order
-    }
-}
 export default class PaginateResponse {
     constructor(private paginatedRequestDTO: PaginatedRequestDTO, private models: Array<RootModel>) {}
 
