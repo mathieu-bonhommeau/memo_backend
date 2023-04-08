@@ -1,4 +1,4 @@
-import RequestInput from '../../src/infrastructure/inputs/requestInput'
+import RequestInput from '../../src/application/inputs/requestInput'
 
 export default class RequestInputStub extends RequestInput {
     constructor(_start: number, _length: number, _order: string) {

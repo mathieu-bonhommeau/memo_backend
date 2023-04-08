@@ -1,5 +1,5 @@
 import PaginateResponse from './paginateResponse'
-import RequestInput from '../../infrastructure/inputs/requestInput'
+import RequestInput from '../inputs/requestInput'
 import TipProvider from '../services/tipProvider'
 
 export default class TipResponse {

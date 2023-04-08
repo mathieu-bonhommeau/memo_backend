@@ -12,6 +12,6 @@ router.get('/tips', TipController.getAll)
 router.post('/tips', TipController.store)
 router.get('/environments', Container.get(EnvironmentController).getAll)
 router.get('/environments-tips', Container.get(EnvironmentController).getAllWithTips)
-router.post('/environments', EnvironmentController.store)
+router.post('/environments', Container.get(EnvironmentController).store)
 
 export default router

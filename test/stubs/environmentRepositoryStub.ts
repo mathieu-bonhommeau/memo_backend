@@ -1,4 +1,4 @@
-import EnvironmentRepositoryInterface from '../../src/domain/ports/repositories/environmentRepositoryInterface'
+import EnvironmentRepositoryInterface from '../../src/domain/ports/environmentRepositoryInterface'
 import Environment from '../../src/domain/models/Environment'
 import { environmentsMocks, environmentsMocksWithTips } from '../mocks/environments'
 import EnvironmentWithTipsDTO from '../../src/infrastructure/adapters/DTO/outputsDTO/EnvironmentWithTipsDTO'

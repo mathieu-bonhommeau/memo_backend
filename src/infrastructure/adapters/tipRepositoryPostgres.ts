@@ -1,7 +1,7 @@
-import TipRepositoryInterface from '../../../domain/ports/repositories/tipRepositoryInterface'
-import Tip from '../../../domain/models/Tip'
+import TipRepositoryInterface from '../../domain/ports/tipRepositoryInterface'
+import Tip from '../../domain/models/Tip'
 import TipSequelize from '../models/tips/tipSequelize'
-import TipFactory from '../../../application/factories/tipFactory'
+import TipFactory from '../../application/factories/tipFactory'
 import TipSequelizeMapper from '../models/tips/tipSequelizeMapper'
 
 export default class TipRepositoryPostgres implements TipRepositoryInterface {

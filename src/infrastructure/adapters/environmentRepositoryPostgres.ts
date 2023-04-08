@@ -1,13 +1,12 @@
-import EnvironmentRepositoryInterface from '../../../domain/ports/repositories/environmentRepositoryInterface'
-import Environment from '../../../domain/models/Environment'
-import EnvironmentFactory from '../../../application/factories/environmentFactory'
-import EnvironmentSequelizeMapper from '../models/environment/environmentSequelizeMapper'
-import SequelizeUtils from '../../../_common/pgUtils'
-import PgUtils from "../../../_common/pgUtils";
+import EnvironmentRepositoryInterface from '../../domain/ports/environmentRepositoryInterface'
+import Environment from '../../domain/models/Environment'
+import EnvironmentFactory from '../../application/factories/environmentFactory'
+import SequelizeUtils from '../../_common/pgUtils'
+import PgUtils from "../../_common/pgUtils";
 import {Row, RowList, Sql} from "postgres";
 import {Service} from "typedi";
-import TipFactory from "../../../application/factories/tipFactory";
-const db = SequelizeUtils.connect()
+import TipFactory from "../../application/factories/tipFactory";
+import EnvironmentCreateRequestDTO from "../../application/DTO/environment/environmentCreateRequestDTO";
 
 @Service()
 export default class EnvironmentRepositoryPostgres implements EnvironmentRepositoryInterface {
@@ -45,8 +44,15 @@ export default class EnvironmentRepositoryPostgres implements EnvironmentReposit
             })
     }
 
-    public async store(environment: Environment): Promise<Environment> {
-        const mapper = new EnvironmentSequelizeMapper(db, environment)
-        return await mapper.syncToSequelize().save()
+    public async store(environmentCreateRequestDTO: EnvironmentCreateRequestDTO): Promise<Environment> {
+        return this.pg`insert into environment
+            (name, details) values
+            (${environmentCreateRequestDTO.name}, ${environmentCreateRequestDTO.details}) returning id, name, details, created_at, updated_at`
+            .then(rows => {
+                if (rows.length > 0) {
+                    return EnvironmentFactory.create(rows[0].id, rows[0].name, rows[0].deatils, rows[0].created_at, rows[0].updated_at)
+                }
+                return null
+            })
     }
 }

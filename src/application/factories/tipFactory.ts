@@ -1,5 +1,5 @@
 import Tip from '../../domain/models/Tip'
-import EnvironmentRepositoryInterface from "../../domain/ports/repositories/environmentRepositoryInterface";
+import EnvironmentRepositoryInterface from "../../domain/ports/environmentRepositoryInterface";
 import {Inject} from "typedi";
 
 export default class TipFactory {

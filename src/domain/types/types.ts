@@ -8,7 +8,7 @@ export type JsonEnvironmentData = {
     updated_at: Date
 }
 
-export type JsonResponse = {
+export type JsonPaginateResponse = {
     data: object[]
     metadata: {
         start: number
@@ -16,4 +16,8 @@ export type JsonResponse = {
         recordsTotal: number
         order: Order
     }
+}
+
+export type JsonCreationResponse = {
+    data: object[]
 }

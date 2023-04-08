@@ -4,7 +4,7 @@ import { tipMock, tipsMocks } from '../../mocks/tips'
 import TipSequelize from '../../../src/infrastructure/adapters/models/tips/tipSequelize'
 import { environmentsMocks } from '../../mocks/environments'
 import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'
-import TipRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/tipRepositoryPostgres'
+import TipRepositoryPostgres from '../../../src/infrastructure/adapters/tipRepositoryPostgres'
 
 describe('TipRepositoryPostgres', () => {
     let pg: Sequelize

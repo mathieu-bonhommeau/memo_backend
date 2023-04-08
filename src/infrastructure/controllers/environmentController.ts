@@ -1,10 +1,10 @@
-import EnvironmentRepositoryPostgres from '../adapters/repositories/environmentRepositoryPostgres'
-import EnvironmentResponse from '../../application/responses/environmentResponse'
-import EnvironmentExpressDTO from '../adapters/DTO/inputsDTO/environmentExpressDTO'
-import EnvironmentAction from '../../application/actions/environmentAction'
+import EnvironmentRepositoryPostgres from '../adapters/environmentRepositoryPostgres'
+import EnvironmentResponse from '../../application/responses/environment/environmentResponse'
 import EnvironmentService from "../../application/services/environmentService";
-import EnvironmentsRequestDTO from "../../application/DTO/environment/environmentsPaginatedRequestDTO";
+import EnvironmentsRequestDTO from "../../application/DTO/environment/environmentsRequestDTO";
 import {Container, Inject, Service} from "typedi";
+import EnvironmentCreateRequestDTO from "../../application/DTO/environment/environmentCreateRequestDTO";
+import Environment from "../../domain/models/Environment";
 
 @Service()
 export default class EnvironmentController {
@@ -14,7 +14,7 @@ export default class EnvironmentController {
     ) {}
     public async getAll(req, res) {
         try {
-            const environmentsRequestDTO:EnvironmentsRequestDTO = EnvironmentsRequestDTO.buildFromRequest(req.params)
+            const environmentsRequestDTO: EnvironmentsRequestDTO = EnvironmentsRequestDTO.buildWithParams(req.params)
             const environments = await this.environmentService.provideAll(Container.get(EnvironmentRepositoryPostgres))
             const response = EnvironmentResponse.buildWithPagination(
                 environmentsRequestDTO, environments
@@ -25,6 +25,7 @@ export default class EnvironmentController {
             }
         } catch (err) {
             console.error(err)
+            return res.status(400).json({ message: 'Bad request' })
         }
     }
 
@@ -41,19 +42,24 @@ export default class EnvironmentController {
             }
         } catch (err) {
             console.error(err)
+            return res.status(400).json({ message: 'Bad request' })
         }
     }
 
-    public static async store(req, res) {
+    public async store(req, res) {
         try {
-            const environment = new EnvironmentExpressDTO(req.body.name, req.body.details).format()
-            const environmentAction = new EnvironmentAction(new EnvironmentRepositoryPostgres())
-            const response = await environmentAction.store(environment)
+            const environmentCreateRequestDTO:EnvironmentCreateRequestDTO = EnvironmentCreateRequestDTO.buildWithBody(req.body)
+            const newEnvironment: Environment = await this.environmentService.store(
+                Container.get(EnvironmentRepositoryPostgres),
+                environmentCreateRequestDTO
+            )
+            const response = EnvironmentResponse.buildForCreation(newEnvironment)
 
             if (response) {
                 return res.status(201).json(response)
             }
         } catch (err) {
+            console.error(err)
             return res.status(400).json({ message: 'Bad request' })
         }
     }

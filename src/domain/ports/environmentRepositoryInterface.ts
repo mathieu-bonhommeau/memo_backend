@@ -1,4 +1,4 @@
-import Environment from '../../models/Environment'
+import Environment from '../models/Environment'
 import EnvironmentWithTipsDTO from '../../../infrastructure/adapters/DTO/outputsDTO/EnvironmentWithTipsDTO'
 
 export default interface EnvironmentRepositoryInterface {

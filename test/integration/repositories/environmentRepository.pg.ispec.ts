@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize'
 import SequelizeUtils from '../../../src/_common/pgUtils'
 import { environmentsMock, environmentsMocks, environmentsMocksWithTips } from '../../mocks/environments'
 import EnvironmentSequelize from '../../../src/infrastructure/adapters/models/environment/environmentSequelize'
-import EnvironmentRepositoryPostgres from '../../../src/infrastructure/adapters/repositories/environmentRepositoryPostgres'
+import EnvironmentRepositoryPostgres from '../../../src/infrastructure/adapters/environmentRepositoryPostgres'
 import { tipsMocksLinksToEnvironment } from '../../mocks/tips'
 import TipSequelize from '../../../src/infrastructure/adapters/models/tips/tipSequelize'
 
