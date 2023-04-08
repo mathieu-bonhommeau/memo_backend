@@ -1,12 +1,12 @@
-import RootModel from '../../domain/models/RootModel'
 import PaginatedRequestDTO from "../DTO/paginatedRequestDTO";
 import {JsonResponse} from "../../domain/types/types";
+import ResponseDTO from "../DTO/responseDTO";
 
 export default class PaginateResponse {
-    constructor(private paginatedRequestDTO: PaginatedRequestDTO, private responseDTO: Array<ResponseDTO>) {}
+    constructor(private paginatedRequestDTO: PaginatedRequestDTO, private responseDTO: ResponseDTO) {}
 
     public paginate(): JsonResponse {
-        const data = this.responseDTO.map((object) => {
+        const data = this.responseDTO.jsonData.map((object) => {
             return { ...object }
         })
 

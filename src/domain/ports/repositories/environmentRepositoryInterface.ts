@@ -3,6 +3,6 @@ import EnvironmentWithTipsDTO from '../../../infrastructure/adapters/DTO/outputs
 
 export default interface EnvironmentRepositoryInterface {
     getAll(): Promise<Environment[]>
-    getAllWithTips(): Promise<Array<EnvironmentWithTipsDTO>>
+    getAllWithTips(): Promise<Environment[]>
     store(environment: Environment): Promise<Environment>
 }

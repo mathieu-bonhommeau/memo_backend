@@ -1,6 +1,5 @@
 import Environment from '../../domain/models/Environment'
 import Tip from '../../domain/models/Tip'
-import EnvironmentWithTipsDTO from '../../infrastructure/adapters/DTO/outputsDTO/EnvironmentWithTipsDTO'
 
 export default class EnvironmentFactory {
     public static create(
@@ -10,17 +9,28 @@ export default class EnvironmentFactory {
         created_at: Date,
         updated_at: Date,
     ): Environment {
-        return new Environment(id, name, details, created_at, updated_at)
+        return new Environment()
+            .setId(id)
+            .setName(name)
+            .setDetails(details)
+            .setCreatedAt(created_at)
+            .setUpdatedAt(updated_at)
     }
 
     public static createWithTips(
-        id: number | null,
+        id: string,
         name: string,
         details: string,
-        createdAt: Date,
-        updatedAt: Date,
-        tips: Tip[] | null,
-    ): EnvironmentWithTipsDTO {
-        return EnvironmentWithTipsDTO.create(id, name, details, createdAt, updatedAt, tips)
+        created_at: Date,
+        updated_at: Date,
+        tips: Tip[],
+    ): Environment {
+        return new Environment()
+            .setId(id)
+            .setName(name)
+            .setDetails(details)
+            .setCreatedAt(created_at)
+            .setUpdatedAt(updated_at)
+            .setTips(tips)
     }
 }

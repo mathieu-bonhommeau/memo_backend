@@ -1,14 +1,26 @@
 import Tip from '../../domain/models/Tip'
+import EnvironmentRepositoryInterface from "../../domain/ports/repositories/environmentRepositoryInterface";
+import {Inject} from "typedi";
 
 export default class TipFactory {
+    constructor(
+        @Inject()
+        private environmentRepository: EnvironmentRepositoryInterface
+    ) {}
     public static create(
-        id: number | null,
+        id: string,
         command: string,
         description: string,
-        environmentId: number,
-        createdAt: Date,
-        updatedAt: Date,
+        environmentId: string,
+        created_at: Date,
+        updated_at: Date,
     ): Tip {
-        return new Tip(id, command, description, environmentId, createdAt, updatedAt)
+        return new Tip()
+            .setId(id)
+            .setCommand(command)
+            .setDescription(description)
+            .setCreatedAt(created_at)
+            .setUpdatedAt(updated_at)
+            .setEnvironmentId(environmentId)
     }
 }

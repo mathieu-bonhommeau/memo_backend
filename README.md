@@ -16,3 +16,4 @@ TODO :
 - [ ] remove orm
 - [ ] handlers errors / middleware / wrapper for remove catch
 - [ ] container de service (db connection, repo...) + DI
+- [ ] do wrapper for pass service to controller in the constructor en créant une interface pour les services

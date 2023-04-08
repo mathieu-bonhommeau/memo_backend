@@ -1,11 +1,11 @@
 import 'reflect-metadata';
-const express = require('express')
-const cors = require('cors')
-
+import express from 'express'
+import cors from 'cors'
 import * as dotenv from 'dotenv'
+import router from './routes'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 export const app = express()
-const router = require('./routes')
+
 
 app.set('port', process.env.PORT)
 

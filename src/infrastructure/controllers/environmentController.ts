@@ -1,26 +1,23 @@
-import EnvironmentRequestInput from '../inputs/environmentRequestInput'
-import EnvironmentProvider from '../../application/services/environmentService'
 import EnvironmentRepositoryPostgres from '../adapters/repositories/environmentRepositoryPostgres'
 import EnvironmentResponse from '../../application/responses/environmentResponse'
 import EnvironmentExpressDTO from '../adapters/DTO/inputsDTO/environmentExpressDTO'
 import EnvironmentAction from '../../application/actions/environmentAction'
-import EnvironmentRepositoryInterface from "../../domain/ports/repositories/environmentRepositoryInterface";
 import EnvironmentService from "../../application/services/environmentService";
-import PaginatedRequestDTO from "../../application/DTO/paginatedRequestDTO";
-import EnvironmentsRequestDTO from "../../application/DTO/environment/environmentsRequestDTO";
+import EnvironmentsRequestDTO from "../../application/DTO/environment/environmentsPaginatedRequestDTO";
+import {Container, Inject, Service} from "typedi";
 
+@Service()
 export default class EnvironmentController {
-    private readonly environmentService: EnvironmentService
-    constructor() {
-        // change this in DI with only interface
-        this.environmentService = new EnvironmentService(new EnvironmentRepositoryPostgres())
-    }
-    public async getAll(req: any, res: any) {
+    constructor(
+        @Inject()
+        private environmentService: EnvironmentService
+    ) {}
+    public async getAll(req, res) {
         try {
             const environmentsRequestDTO:EnvironmentsRequestDTO = EnvironmentsRequestDTO.buildFromRequest(req.params)
-
-            const response = await EnvironmentResponse.getAll(
-                environmentsRequestDTO, this.environmentService
+            const environments = await this.environmentService.provideAll(Container.get(EnvironmentRepositoryPostgres))
+            const response = EnvironmentResponse.buildWithPagination(
+                environmentsRequestDTO, environments
             )
 
             if (response) {
@@ -31,11 +28,12 @@ export default class EnvironmentController {
         }
     }
 
-    public static async getAllWithTips(req: any, res: any) {
+    public async getAllWithTips(req, res) {
         try {
-            const paginatedRequest:PaginatedRequestDTO = EnvironmentsRequestDTO.buildFromRequest(req.params)
-            const response = EnvironmentResponse.getAllWithTips(
-                environmentsRequestDTO, this.environmentService
+            const environmentsRequestDTO:EnvironmentsRequestDTO = EnvironmentsRequestDTO.buildWithParams(req.params)
+            const environments = await this.environmentService.provideAllWithTips(Container.get(EnvironmentRepositoryPostgres))
+            const response = EnvironmentResponse.buildWithPagination(
+                environmentsRequestDTO, environments
             )
 
             if (response) {
@@ -46,7 +44,7 @@ export default class EnvironmentController {
         }
     }
 
-    public static async store(req: any, res: any) {
+    public static async store(req, res) {
         try {
             const environment = new EnvironmentExpressDTO(req.body.name, req.body.details).format()
             const environmentAction = new EnvironmentAction(new EnvironmentRepositoryPostgres())

@@ -1,24 +1,14 @@
 import PaginateResponse from './paginateResponse'
-import PaginatedRequestDTO from "../DTO/paginatedRequestDTO";
 import EnvironmentService from "../services/environmentService";
-import EnvironmentsRequestDTO from "../DTO/environment/environmentsRequestDTO";
-import responseDTO from "../DTO/responseDTO";
+import EnvironmentsRequestDTO from "../DTO/environment/environmentsPaginatedRequestDTO";
+import EnvironmentsResponseDTO from "../DTO/environment/environmentsResponseDTO";
+import Environment from "../../domain/models/Environment";
 
-export default class EnvironmentResponse implements EnvironmentResponseInterface {
+export default class EnvironmentResponse {
 
-    public static getAll(environmentRequestDTO: EnvironmentsRequestDTO, environmentService: EnvironmentService): Promise<PaginateResponse> {
-        return environmentService
-            .provideAll()
-            .then((environments): PaginateResponse => {
-                if (environments.length > 0) {
-                    const environmentsResponseDTO = EnvironmentsResponseDTO.build(environments)
-                    return new PaginateResponse(environmentRequestDTO, environments)
-                }
-                return new PaginateResponse(environmentRequestDTO, [])
-            })
-            .catch((error) => {
-                throw error
-            })
+    public static buildWithPagination(environmentRequestDTO: EnvironmentsRequestDTO, environments: Environment[] ): PaginateResponse {
+        const environmentsResponseDTO: EnvironmentsResponseDTO = EnvironmentsResponseDTO.buildFromResults(environments)
+        return new PaginateResponse(environmentRequestDTO, environmentsResponseDTO)
     }
 
     public getAllWithTips(environmentRequestDTO: EnvironmentsRequestDTO, environmentService: EnvironmentService): Promise<PaginateResponse> {
