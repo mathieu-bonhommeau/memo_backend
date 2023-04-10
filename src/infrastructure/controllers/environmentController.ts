@@ -1,23 +1,28 @@
 import EnvironmentRepositoryPostgres from '../adapters/environmentRepositoryPostgres'
-import EnvironmentResponse from '../../application/responses/environment/environmentResponse'
-import EnvironmentService from "../../application/services/environmentService";
-import EnvironmentsRequestDTO from "../../application/DTO/environment/environmentsRequestDTO";
-import {Container, Inject, Service} from "typedi";
-import EnvironmentCreateRequestDTO from "../../application/DTO/environment/environmentCreateRequestDTO";
-import Environment from "../../domain/models/Environment";
+import EnvironmentService from '../../application/services/environmentService'
+import EnvironmentsRequest from '../../application/requests/environment/environmentsRequest'
+import { Container, Inject, Service } from 'typedi'
+import Environment from '../../domain/models/Environment'
+import PaginateResponse from '../../application/responses/paginateResponse'
+import EnvironmentsResponse from '../../application/responses/environment/environmentsResponse'
+import EnvironmentCreateRequest from '../../application/requests/environment/environmentCreateRequest'
+import ActionResponse from '../../application/responses/actionResponse'
 
 @Service()
 export default class EnvironmentController {
     constructor(
         @Inject()
-        private environmentService: EnvironmentService
+        private environmentService: EnvironmentService,
     ) {}
     public async getAll(req, res) {
         try {
-            const environmentsRequestDTO: EnvironmentsRequestDTO = EnvironmentsRequestDTO.buildWithParams(req.params)
-            const environments = await this.environmentService.provideAll(Container.get(EnvironmentRepositoryPostgres))
-            const response = EnvironmentResponse.buildWithPagination(
-                environmentsRequestDTO, environments
+            const environmentsRequest: EnvironmentsRequest = EnvironmentsRequest.buildWithParams(req.params)
+            const environments: Environment[] = await this.environmentService.provideAll(
+                Container.get(EnvironmentRepositoryPostgres),
+            )
+            const response: PaginateResponse = new EnvironmentsResponse().buildWithPagination(
+                environmentsRequest,
+                environments,
             )
 
             if (response) {
@@ -31,10 +36,13 @@ export default class EnvironmentController {
 
     public async getAllWithTips(req, res) {
         try {
-            const environmentsRequestDTO:EnvironmentsRequestDTO = EnvironmentsRequestDTO.buildWithParams(req.params)
-            const environments = await this.environmentService.provideAllWithTips(Container.get(EnvironmentRepositoryPostgres))
-            const response = EnvironmentResponse.buildWithPagination(
-                environmentsRequestDTO, environments
+            const environmentsRequest: EnvironmentsRequest = EnvironmentsRequest.buildWithParams(req.params)
+            const environments: Environment[] = await this.environmentService.provideAllWithTips(
+                Container.get(EnvironmentRepositoryPostgres),
+            )
+            const response: PaginateResponse = new EnvironmentsResponse().buildWithPagination(
+                environmentsRequest,
+                environments,
             )
 
             if (response) {
@@ -48,12 +56,12 @@ export default class EnvironmentController {
 
     public async store(req, res) {
         try {
-            const environmentCreateRequestDTO:EnvironmentCreateRequestDTO = EnvironmentCreateRequestDTO.buildWithBody(req.body)
+            const environmentCreateRequest: EnvironmentCreateRequest = EnvironmentCreateRequest.buildWithBody(req.body)
             const newEnvironment: Environment = await this.environmentService.store(
                 Container.get(EnvironmentRepositoryPostgres),
-                environmentCreateRequestDTO
+                environmentCreateRequest,
             )
-            const response = EnvironmentResponse.buildForCreation(newEnvironment)
+            const response: ActionResponse = new EnvironmentsResponse().buildForCreation(newEnvironment)
 
             if (response) {
                 return res.status(201).json(response)

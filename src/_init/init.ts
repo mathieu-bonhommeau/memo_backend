@@ -1,7 +1,7 @@
-import InitDb from "./InitDb";
+import InitDb from './InitDb'
 
 try {
-    (async () => {
+    ;(async () => {
         const res = await InitDb.init()
         if (res) {
             return console.log('DB OK !')

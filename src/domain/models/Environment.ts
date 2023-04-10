@@ -1,5 +1,5 @@
 import RootModel from './RootModel'
-import Tip from "./Tip";
+import Tip from './Tip'
 
 export default class Environment extends RootModel {
     private _name: string
@@ -11,7 +11,7 @@ export default class Environment extends RootModel {
     }
 
     get id(): string {
-        return this._id;
+        return this._id
     }
 
     public setId(value: string): Environment {
@@ -20,7 +20,7 @@ export default class Environment extends RootModel {
     }
 
     get name(): string {
-        return this._name;
+        return this._name
     }
 
     public setName(value: string): Environment {
@@ -29,16 +29,16 @@ export default class Environment extends RootModel {
     }
 
     get details(): string {
-        return this._details;
+        return this._details
     }
 
-    public setDetails(value: string): Environment  {
+    public setDetails(value: string): Environment {
         this._details = value
         return this
     }
 
     get created_at(): Date {
-        return this._created_at;
+        return this._created_at
     }
 
     public setCreatedAt(value: Date): Environment {
@@ -56,7 +56,7 @@ export default class Environment extends RootModel {
     }
 
     get tips(): Tip[] {
-        return this._tips;
+        return this._tips
     }
 
     public addTip(tip: Tip): Environment {
@@ -68,5 +68,4 @@ export default class Environment extends RootModel {
         this._tips = tips
         return this
     }
-
 }

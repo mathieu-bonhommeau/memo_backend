@@ -1,5 +1,5 @@
 import RootModel from './RootModel'
-import Environment from "./Environment";
+import Environment from './Environment'
 
 export default class Tip extends RootModel {
     private _command: string
@@ -20,7 +20,7 @@ export default class Tip extends RootModel {
     }
 
     get command(): string {
-        return this._command;
+        return this._command
     }
 
     public setCommand(value: string): Tip {
@@ -29,16 +29,16 @@ export default class Tip extends RootModel {
     }
 
     get description(): string {
-        return this._description;
+        return this._description
     }
 
-    public setDescription(value: string): Tip  {
+    public setDescription(value: string): Tip {
         this._description = value
         return this
     }
 
     get created_at(): Date {
-        return this._created_at;
+        return this._created_at
     }
 
     public setCreatedAt(value: Date): Tip {
@@ -55,8 +55,8 @@ export default class Tip extends RootModel {
         return this
     }
 
-    get environment(): string {
-        return this._environment_id;
+    get environment_id(): string {
+        return this._environment_id
     }
 
     public setEnvironmentId(environment_id: string): Tip {

@@ -1,11 +1,10 @@
 export default abstract class RootModel {
-
     protected _id: string
     protected _created_at: Date
     protected _updated_at: Date
 
     get id(): string {
-        return this._id;
+        return this._id
     }
 
     public setId(value: string): RootModel {
@@ -14,7 +13,7 @@ export default abstract class RootModel {
     }
 
     get created_at(): Date {
-        return this._created_at;
+        return this._created_at
     }
 
     public setCreatedAt(value: Date): RootModel {

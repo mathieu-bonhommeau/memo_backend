@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'
 import * as process from 'process'
-import postgres, {Sql} from "postgres";
+import postgres, { Sql } from 'postgres'
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 export default class PgUtils {
@@ -10,17 +10,17 @@ export default class PgUtils {
             port: parseInt(process.env.POSTGRES_PORT as string),
             database: process.env.POSTGRES_DB as string,
             username: process.env.POSTGRES_USER as string,
-            password: process.env.POSTGRES_PASSWORD as string
+            password: process.env.POSTGRES_PASSWORD as string,
         })
     }
 
-    public static rootConnect():Sql {
+    public static rootConnect(): Sql {
         return postgres({
             host: process.env.POSTGRES_HOST as string,
             port: parseInt(process.env.POSTGRES_PORT as string),
             database: 'postgres',
             username: process.env.POSTGRES_USER as string,
-            password: process.env.POSTGRES_PASSWORD as string
+            password: process.env.POSTGRES_PASSWORD as string,
         })
     }
 

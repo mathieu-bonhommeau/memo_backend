@@ -1,16 +1,24 @@
-import TipRequestInput from '../../application/inputs/tipRequestInput'
 import TipRepositoryPostgres from '../adapters/tipRepositoryPostgres'
-import TipResponse from '../../application/responses/tipResponse'
-import TipProvider from '../../application/services/tipProvider'
-import TipAction from '../../application/actions/tipAction'
-import TipExpressDTO from '../adapters/DTO/inputsDTO/tipExpressDTO'
+import TipService from '../../application/services/tipService'
+import {Container, Inject, Service} from 'typedi'
+import TipsRequest from '../../application/requests/tip/tipsRequest'
+import Tip from '../../domain/models/Tip'
+import PaginateResponse from '../../application/responses/paginateResponse'
+import TipResponse from '../../application/responses/tip/tipResponse'
+import TipCreateRequest from '../../application/requests/tip/tipCreateRequest'
+import ActionResponse from "../../application/responses/actionResponse";
 
+@Service()
 export default class TipController {
-    public static async getAll(req: any, res: any) {
+    constructor(
+        @Inject()
+        private tipService: TipService,
+    ) {}
+    public async getAll(req, res) {
         try {
-            const tipRequestInput = new TipRequestInput(req.start, req.offset, req.order)
-            const tipProvider = new TipProvider(new TipRepositoryPostgres())
-            const response = await new TipResponse(tipRequestInput, tipProvider).getAll()
+            const tipsRequest: TipsRequest = TipsRequest.buildWithParams(req.params)
+            const tips: Tip[] = await this.tipService.provideAll(Container.get(TipRepositoryPostgres))
+            const response: PaginateResponse = new TipResponse().buildWithPagination(tipsRequest, tips)
 
             if (response) {
                 return res.status(200).json(response.paginate())
@@ -19,11 +27,11 @@ export default class TipController {
             console.error(err)
         }
     }
-    public static async store(req: any, res: any) {
+    public async store(req, res) {
         try {
-            const tip = new TipExpressDTO(req.body.command, req.body.description, req.body.environmentId).format()
-            const tipAction = new TipAction(new TipRepositoryPostgres())
-            const response = await tipAction.store(tip)
+            const tipCreateRequest: TipCreateRequest = TipCreateRequest.buildWithBody(req.body)
+            const newTip: Tip = await this.tipService.store(Container.get(TipRepositoryPostgres), tipCreateRequest)
+            const response: ActionResponse = new TipResponse().buildForCreation(newTip)
 
             if (response) {
                 return res.status(201).json(response)

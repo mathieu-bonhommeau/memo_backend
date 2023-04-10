@@ -2,13 +2,7 @@ import Environment from '../../domain/models/Environment'
 import Tip from '../../domain/models/Tip'
 
 export default class EnvironmentFactory {
-    public static create(
-        id: string,
-        name: string,
-        details: string,
-        created_at: Date,
-        updated_at: Date,
-    ): Environment {
+    public static create(id: string, name: string, details: string, created_at: Date, updated_at: Date): Environment {
         return new Environment()
             .setId(id)
             .setName(name)

@@ -1,22 +1,16 @@
-import PaginatedRequestDTO from "../DTO/paginatedRequestDTO";
-import {JsonPaginateResponse, JsonResponse} from "../../domain/types/types";
-import ResponseDTO from "../DTO/responseDTO";
-
+import PaginateRequest from '../../domain/ports/inputs/paginateRequest'
+import { JsonPaginateResponse } from '../../domain/types/response'
 export default class PaginateResponse {
-    constructor(private paginatedRequestDTO: PaginatedRequestDTO, private responseDTO: ResponseDTO) {}
+    constructor(private paginateRequest: PaginateRequest, private jsonData: object[]) {}
 
     public paginate(): JsonPaginateResponse {
-        const data = this.responseDTO.jsonData.map((object) => {
-            return { ...object }
-        })
-
         return {
-            data: data,
+            data: this.jsonData,
             metadata: {
-                start: this.paginatedRequestDTO.start,
-                length: this.paginatedRequestDTO.offset,
-                recordsTotal: data.length,
-                order: this.paginatedRequestDTO.order,
+                offset: this.paginateRequest.offset,
+                length: this.paginateRequest.length,
+                recordsTotal: this.jsonData.length,
+                order: this.paginateRequest.order,
             },
         }
     }
