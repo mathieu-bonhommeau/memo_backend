@@ -6,6 +6,7 @@ import { Row, RowList, Sql } from 'postgres'
 import PgUtils from '../../_common/pgUtils'
 import TipCreateRequest from "../../application/requests/tip/tipCreateRequest";
 
+@Service()
 export default class TipRepositoryPostgres implements TipRepositoryInterface {
     private pg: Sql
     constructor() {

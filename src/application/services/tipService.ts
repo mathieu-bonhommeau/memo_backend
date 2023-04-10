@@ -1,19 +1,16 @@
 import Tip from '../../domain/models/Tip'
-import TipRepositoryInterface from '../../domain/ports/repositories/tipRepositoryInterface'
-import { Service } from 'typedi'
-import EnvironmentRepositoryInterface from '../../domain/ports/repositories/environmentRepositoryInterface'
-import Environment from '../../domain/models/Environment'
-import EnvironmentCreateRequest from '../requests/environment/environmentCreateRequest'
+import {Inject, Service} from 'typedi'
 import TipCreateRequest from '../requests/tip/tipCreateRequest'
+import TipRepositoryInterface from "../../domain/ports/repositories/tipRepositoryInterface";
 
 @Service()
 export default class TipService {
-
-    public provideAll(tipRepository: TipRepositoryInterface): Promise<Tip[]> {
-        return tipRepository.getAll()
+    @Inject('TipRepositoryInterface') private tipRepository: TipRepositoryInterface
+    public provideAll(): Promise<Tip[]> {
+        return this.tipRepository.getAll()
     }
 
-    public store(tipRepository: TipRepositoryInterface, tipCreateRequest: TipCreateRequest): Promise<Tip> {
-        return tipRepository.store(tipCreateRequest)
+    public store(tipCreateRequest: TipCreateRequest): Promise<Tip> {
+        return this.tipRepository.store(tipCreateRequest)
     }
 }

@@ -3,10 +3,6 @@ import EnvironmentRepositoryInterface from '../../domain/ports/repositories/envi
 import { Inject } from 'typedi'
 
 export default class TipFactory {
-    constructor(
-        @Inject()
-        private environmentRepository: EnvironmentRepositoryInterface,
-    ) {}
     public static create(
         id: string,
         command: string,

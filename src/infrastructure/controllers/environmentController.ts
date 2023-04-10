@@ -1,7 +1,6 @@
-import EnvironmentRepositoryPostgres from '../adapters/environmentRepositoryPostgres'
 import EnvironmentService from '../../application/services/environmentService'
 import EnvironmentsRequest from '../../application/requests/environment/environmentsRequest'
-import { Container, Inject, Service } from 'typedi'
+import { Service } from 'typedi'
 import Environment from '../../domain/models/Environment'
 import PaginateResponse from '../../application/responses/paginateResponse'
 import EnvironmentsResponse from '../../application/responses/environment/environmentsResponse'
@@ -10,16 +9,11 @@ import ActionResponse from '../../application/responses/actionResponse'
 
 @Service()
 export default class EnvironmentController {
-    constructor(
-        @Inject()
-        private environmentService: EnvironmentService,
-    ) {}
+    constructor(private environmentService: EnvironmentService) {}
     public async getAll(req, res) {
         try {
             const environmentsRequest: EnvironmentsRequest = EnvironmentsRequest.buildWithParams(req.params)
-            const environments: Environment[] = await this.environmentService.provideAll(
-                Container.get(EnvironmentRepositoryPostgres),
-            )
+            const environments: Environment[] = await this.environmentService.provideAll()
             const response: PaginateResponse = new EnvironmentsResponse().buildWithPagination(
                 environmentsRequest,
                 environments,
@@ -37,9 +31,7 @@ export default class EnvironmentController {
     public async getAllWithTips(req, res) {
         try {
             const environmentsRequest: EnvironmentsRequest = EnvironmentsRequest.buildWithParams(req.params)
-            const environments: Environment[] = await this.environmentService.provideAllWithTips(
-                Container.get(EnvironmentRepositoryPostgres),
-            )
+            const environments: Environment[] = await this.environmentService.provideAllWithTips()
             const response: PaginateResponse = new EnvironmentsResponse().buildWithPagination(
                 environmentsRequest,
                 environments,
@@ -57,10 +49,7 @@ export default class EnvironmentController {
     public async store(req, res) {
         try {
             const environmentCreateRequest: EnvironmentCreateRequest = EnvironmentCreateRequest.buildWithBody(req.body)
-            const newEnvironment: Environment = await this.environmentService.store(
-                Container.get(EnvironmentRepositoryPostgres),
-                environmentCreateRequest,
-            )
+            const newEnvironment: Environment = await this.environmentService.store(environmentCreateRequest)
             const response: ActionResponse = new EnvironmentsResponse().buildForCreation(newEnvironment)
 
             if (response) {

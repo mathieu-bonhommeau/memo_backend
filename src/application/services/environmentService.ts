@@ -1,21 +1,19 @@
 import EnvironmentRepositoryInterface from '../../domain/ports/repositories/environmentRepositoryInterface'
 import Environment from '../../domain/models/Environment'
-import { Service } from 'typedi'
+import {Inject, Service} from 'typedi'
 import EnvironmentCreateRequest from '../requests/environment/environmentCreateRequest'
 @Service()
 export default class EnvironmentService {
-    public provideAll(environmentRepository: EnvironmentRepositoryInterface): Promise<Environment[]> {
-        return environmentRepository.getAll()
+    @Inject('EnvironmentRepositoryInterface') private environmentRepository: EnvironmentRepositoryInterface
+    public provideAll(): Promise<Environment[]> {
+        return this.environmentRepository.getAll()
     }
 
-    public provideAllWithTips(environmentRepository: EnvironmentRepositoryInterface): Promise<Environment[]> {
-        return environmentRepository.getAllWithTips()
+    public provideAllWithTips(): Promise<Environment[]> {
+        return this.environmentRepository.getAllWithTips()
     }
 
-    public store(
-        environmentRepository: EnvironmentRepositoryInterface,
-        environmentCreateRequest: EnvironmentCreateRequest,
-    ): Promise<Environment> {
-        return environmentRepository.store(environmentCreateRequest)
+    public store(environmentCreateRequest: EnvironmentCreateRequest,): Promise<Environment> {
+        return this.environmentRepository.store(environmentCreateRequest)
     }
 }

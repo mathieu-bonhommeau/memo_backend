@@ -1,4 +1,6 @@
 import 'reflect-metadata'
+import DependencyContainer from "./_config/DependencyInjection"
+DependencyContainer.init()
 import express from 'express'
 import cors from 'cors'
 import * as dotenv from 'dotenv'

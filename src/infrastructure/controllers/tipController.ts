@@ -1,6 +1,5 @@
-import TipRepositoryPostgres from '../adapters/tipRepositoryPostgres'
 import TipService from '../../application/services/tipService'
-import {Container, Inject, Service} from 'typedi'
+import {Inject, Service} from 'typedi'
 import TipsRequest from '../../application/requests/tip/tipsRequest'
 import Tip from '../../domain/models/Tip'
 import PaginateResponse from '../../application/responses/paginateResponse'
@@ -10,14 +9,12 @@ import ActionResponse from "../../application/responses/actionResponse";
 
 @Service()
 export default class TipController {
-    constructor(
-        @Inject()
-        private tipService: TipService,
-    ) {}
+    @Inject() private tipService: TipService
+
     public async getAll(req, res) {
         try {
             const tipsRequest: TipsRequest = TipsRequest.buildWithParams(req.params)
-            const tips: Tip[] = await this.tipService.provideAll(Container.get(TipRepositoryPostgres))
+            const tips: Tip[] = await this.tipService.provideAll()
             const response: PaginateResponse = new TipResponse().buildWithPagination(tipsRequest, tips)
 
             if (response) {
@@ -30,7 +27,7 @@ export default class TipController {
     public async store(req, res) {
         try {
             const tipCreateRequest: TipCreateRequest = TipCreateRequest.buildWithBody(req.body)
-            const newTip: Tip = await this.tipService.store(Container.get(TipRepositoryPostgres), tipCreateRequest)
+            const newTip: Tip = await this.tipService.store(tipCreateRequest)
             const response: ActionResponse = new TipResponse().buildForCreation(newTip)
 
             if (response) {
