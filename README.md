@@ -13,7 +13,8 @@ TODO :
 - [ ] CI CD : github action
 - [ ] Errors handlers
 - [ ] jwt auth
-- [ ] remove orm
+- [x] remove orm
 - [ ] handlers errors / middleware / wrapper for remove catch
 - [ ] container de service (db connection, repo...) + DI
-- [ ] do wrapper for pass service to controller in the constructor en créant une interface pour les services
+- [ ] create an interface for services
+- [ ] request for environment with tips is not ok
