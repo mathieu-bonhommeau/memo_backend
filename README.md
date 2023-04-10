@@ -17,4 +17,6 @@ TODO :
 - [ ] handlers errors / middleware / wrapper for remove catch
 - [ ] container de service (db connection, repo...) + DI
 - [ ] create an interface for services
-- [ ] request for environment with tips is not ok
+- [x] request for environment with tips is not ok
+- [ ] implement pagination - queries are presents but not implemented
+- [ ] refact choice of env and test context

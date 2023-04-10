@@ -8,6 +8,5 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     roots: ['<rootDir>/test/'],
     modulePaths: ['<rootDir>'],
-    globalSetup: '<rootDir>/test/jest/globalSetup.ts',
-    //globalTeardown: '<rootDir>/test/jest/globalTeardown.ts',
+    globalSetup: '<rootDir>/test/jest/globalSetup.ts'
 }

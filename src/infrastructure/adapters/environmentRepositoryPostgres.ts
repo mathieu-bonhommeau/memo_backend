@@ -26,32 +26,35 @@ export default class EnvironmentRepositoryPostgres implements EnvironmentReposit
     }
 
     public async getAllWithTips(): Promise<Environment[]> {
-        return this.pg`select e.*, t.* from environments as e 
-                       join tips as t on t.environment_id = e.id`.then((rows) => {
-            if (rows.length > 0) {
-                return rows.map((row: Row) => {
-                    const tips = row.tips.map((tip) => {
-                        return TipFactory.create(
-                            tip.id,
-                            tip.command,
-                            tip.description,
-                            tip.created_at,
-                            tip.updated_at,
-                            tip.environmentId,
-                        )
-                    })
-                    return EnvironmentFactory.createWithTips(
-                        row.id,
-                        row.name,
-                        row.details,
-                        row.createdAt,
-                        row.updatedAt,
-                        tips,
-                    )
-                })
+        const environmentsWithTips = []
+        const environmentsRows = await this.pg`select * from environments`
+        if (environmentsRows.length > 0) {
+            for (let i = 0; i < environmentsRows.length - 1; i++) {
+                const tipsByEnvironmentRows = await this
+                    .pg`select * from tips where tips.environment_id = ${environmentsRows[i].id}`
+                environmentsWithTips.push(
+                    EnvironmentFactory.createWithTips(
+                        environmentsRows[i].id,
+                        environmentsRows[i].name,
+                        environmentsRows[i].details,
+                        environmentsRows[i].created_at,
+                        environmentsRows[i].updated_at,
+                        tipsByEnvironmentRows.map((tip) => {
+                            return TipFactory.create(
+                                tip.id,
+                                tip.command,
+                                tip.description,
+                                tip.created_at,
+                                tip.updated_at,
+                                tip.environment_id,
+                            )
+                        }),
+                    ),
+                )
             }
-            return []
-        })
+            return environmentsWithTips
+        }
+        return []
     }
 
     public async store(environmentCreateRequest: EnvironmentCreateRequest): Promise<Environment> {

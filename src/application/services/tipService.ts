@@ -1,7 +1,7 @@
 import Tip from '../../domain/models/Tip'
-import {Inject, Service} from 'typedi'
+import { Inject, Service } from 'typedi'
 import TipCreateRequest from '../requests/tip/tipCreateRequest'
-import TipRepositoryInterface from "../../domain/ports/repositories/tipRepositoryInterface";
+import TipRepositoryInterface from '../../domain/ports/repositories/tipRepositoryInterface'
 
 @Service()
 export default class TipService {

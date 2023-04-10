@@ -4,7 +4,7 @@ import TipFactory from '../../application/factories/tipFactory'
 import { Service } from 'typedi'
 import { Row, RowList, Sql } from 'postgres'
 import PgUtils from '../../_common/pgUtils'
-import TipCreateRequest from "../../application/requests/tip/tipCreateRequest";
+import TipCreateRequest from '../../application/requests/tip/tipCreateRequest'
 
 @Service()
 export default class TipRepositoryPostgres implements TipRepositoryInterface {

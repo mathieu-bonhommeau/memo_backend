@@ -1,5 +1,7 @@
 import PaginateRequest from '../../domain/ports/inputs/paginateRequest'
-import { JsonPaginateResponse } from '../../domain/types/response'
+import {JsonPaginateResponse} from '../../domain/types/response'
+import {Order} from "../../domain/enums/enums";
+
 export default class PaginateResponse {
     constructor(private paginateRequest: PaginateRequest, private jsonData: object[]) {}
 
@@ -7,10 +9,10 @@ export default class PaginateResponse {
         return {
             data: this.jsonData,
             metadata: {
-                offset: this.paginateRequest.offset,
-                length: this.paginateRequest.length,
-                recordsTotal: this.jsonData.length,
-                order: this.paginateRequest.order,
+                offset: this.paginateRequest.offset || 0,
+                length: this.paginateRequest.length || 10,
+                recordsTotal: this.jsonData.length || 0,
+                order: this.paginateRequest.order || Order.ASC,
             },
         }
     }

@@ -1,11 +1,11 @@
 import TipService from '../../application/services/tipService'
-import {Inject, Service} from 'typedi'
+import { Inject, Service } from 'typedi'
 import TipsRequest from '../../application/requests/tip/tipsRequest'
 import Tip from '../../domain/models/Tip'
 import PaginateResponse from '../../application/responses/paginateResponse'
 import TipResponse from '../../application/responses/tip/tipResponse'
 import TipCreateRequest from '../../application/requests/tip/tipCreateRequest'
-import ActionResponse from "../../application/responses/actionResponse";
+import ActionResponse from '../../application/responses/actionResponse'
 
 @Service()
 export default class TipController {

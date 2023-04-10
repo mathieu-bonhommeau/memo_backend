@@ -32,6 +32,7 @@ export default class EnvironmentController {
         try {
             const environmentsRequest: EnvironmentsRequest = EnvironmentsRequest.buildWithParams(req.params)
             const environments: Environment[] = await this.environmentService.provideAllWithTips()
+            console.log(environments)
             const response: PaginateResponse = new EnvironmentsResponse().buildWithPagination(
                 environmentsRequest,
                 environments,
