@@ -8,8 +8,8 @@ module.exports = async () => {
         const rootPg: Sql = await PgUtils.rootConnect()
         await rootPg`SELECT pg_terminate_backend(pg_stat_activity.pid)
                      FROM pg_stat_activity
-                     WHERE pg_stat_activity.datname = 'memo_backend_test'`
-        await rootPg`DROP DATABASE IF EXISTS ${rootPg(process.env.POSTGRES_DB as string)}`
+                     WHERE pg_stat_activity.datname = ${process.env.POSTGRES_DB}`
+        await rootPg`DROP DATABASE IF EXISTS ${rootPg(process.env.POSTGRES_DB)}`
         await rootPg`CREATE DATABASE ${process.env.POSTGRES_DB as string} OWNER ${process.env.POSTGRES_USER as string}`
         return await rootPg.file(__dirname + '/../sql/schema.sql')
 
